@@ -849,7 +849,7 @@
     <section class="view" id="view-location" aria-label="Location">
       <div class="wrap">
         <div class="page-head">
-          <h2>Lieux</h2>
+          <h2>Lieu du mariage</h2>
           <p>La fête se déroule au Domaine de Ronceval en Belgique. Le stationnement est gratuit et l'entrée est
             indiquée depuis la route principale.</p>
         </div>
@@ -865,7 +865,7 @@
             </div>
             <div>
               <h3>En train</h3>
-              <p>La gare la plus proche se trouve à 12 minutes en taxi. Nous pouvons organiser une navette sur demande.
+              <p>La gare la plus proche se trouve à 12 minutes en voiture.
               </p>
             </div>
           </div>
@@ -876,6 +876,10 @@
           <div class="row">
             <a class="btn" id="map-open" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
             <a class="btn ghost" id="map-route" target="_blank" rel="noopener">Démarrer un itinéraire</a>
+          </div>
+          <div class="page-head">
+            <h2>Mairie</h2>
+            <p>La cérémonie civile se déroulera à la mairie de Lille. Place Augustin Laurent, 59800 Lille.</p>
           </div>
         </div>
       </div>
@@ -932,8 +936,8 @@
       <div class="wrap">
         <div class="page-head">
           <h2>Hôtels</h2>
-          <p>Nous vous conseillons de réserver rapidement, car les chambres près du lieu de réception affichent complet
-            assez vite en juin.</p>
+          <p>Nous vous conseillons de réserver rapidement, car les chambres près du lieu de réception peuvent afficher
+            complet.</p>
         </div>
         <div class="page-body">
           <div class="hotels" id="hotels"></div>
@@ -972,7 +976,9 @@
        ========================================================= */
     var CONFIG = {
       venueName: "Domaine de Ronceval",
-      venueAddress: "Rue de l'Espierres 84, 7711 Mouscron, Belgique",   /* used for the map */
+      venueAddress: "Rue de l'Espierres 84, 7711 Mouscron, Belgique",
+      mairieName: "Domaine de Ronceval",
+      mairieAddress: "Rue de l'Espierres 84, 7711 Mouscron, Belgique",   /* used for the map */
       /* Google Forms: File > Send > "<>" tab, then copy the URL inside src="..." */
       formEmbedUrl: "",   /* e.g. https://docs.google.com/forms/d/e/XXXX/viewform?embedded=true */
       formShareUrl: ""    /* e.g. https://forms.gle/XXXX */
@@ -983,47 +989,49 @@
         course: "Vin D'Honneur", note: "Samedi après-midi", dishes: [
           { name: "Pologne", desc: "Chou, Pomme, Cornichons et Metka", tags: [] },
           { name: "Espagne", desc: "Chorizo, Pomme de terre, Salmorejo", tags: [] },
-          { name: "Savoie", desc: "Crozets, Beaufort", tags: ["vg"] },
-          { name: "Nord", desc: "Maroilles, Oeufs", tags: ["vg"] },
+          { name: "Savoie", desc: "Crozets, Beaufort", tags: ["v"] },
+          { name: "Nord", desc: "Maroilles, Oeufs", tags: ["v"] },
           { name: "Dunkerque", desc: "Harang, Chou", tags: [] },
-          { name: "Belgique", desc: "Cheddar, bière", tags: ["vg"] },
-          { name: "Ostrevent", desc: "Champignons, Noix", tags: ["vg"] }
+          { name: "Belgique", desc: "Cheddar, bière", tags: ["v"] },
+          { name: "Ostrevent", desc: "Champignons, Noix", tags: ["v"] },
+          { name: "Italie", desc: "Mozza, Artichaut, Tomate", tags: ["v"] },
+          { name: "Mediterannée", desc: "Parmesan, Houmous, Carottes", tags: ["v"] }
         ]
       },
       {
         course: "Entrées", note: "Samedi soir", dishes: [
           { name: "Huevos Perfectos", desc: "Oeuf, Poireaux et Chorizo.", tags: [] },
-          { name: "Huevos Perfectos (Végétarien)", desc: "Oeuf, Poireaux et Comté.", tags: ["vg"] }
+          { name: "Huevos Perfectos (Végétarien)", desc: "Oeuf, Poireaux et Comté.", tags: ["v"] }
         ]
       },
       {
         course: "Plat principal", note: "Samedi soir", dishes: [
           { name: "Réconfort du Nord au Sud", desc: "Boeuf, bière, pommes de terres", tags: [] },
-          { name: "Voyage d'Est en Ouest", desc: "Halloumi, haricots rouges, butternut, cheddar, légumes", tags: ["vg"] },
+          { name: "Voyage d'Est en Ouest", desc: "Halloumi, haricots rouges, butternut, cheddar, légumes", tags: ["v"] },
         ]
       },
       {
         course: "Desserts", note: "Samedi soir", dishes: [
-          { name: "Préféré des mariés", desc: "Oeufs, Vanille", tags: ["vg"] },
-          { name: "Plaisir du Portugal", desc: "Oeufs, Cannelle", tags: ["vg"] },
-          { name: "Atterissage en Pologne", desc: "Oeufs, Abricot, Biscuits", tags: ["vg"] }
+          { name: "Préféré des mariés", desc: "Oeufs, Vanille", tags: ["v"] },
+          { name: "Plaisir du Portugal", desc: "Oeufs, Cannelle", tags: ["v"] },
+          { name: "Atterissage en Pologne", desc: "Oeufs, Abricot, Biscuits", tags: ["v"] }
         ]
       }
     ];
     var TAGS = { v: "Végétarien", vg: "Végan", gf: "Sans Gluten" };
 
     var HOTELS = [
-      { name: "Moxy Lille Centre", desc: "Hotel 3* moderne et accueillant.", dist: "25 min à pieds de Lille Flandres", price: "A partir de 129€ la nuit", color: "#ffe66d", link: "#" },
-      { name: "Novotel Lille Centre Gares", desc: "Hotel 4* classique des standards Novotel.", dist: "15 min à pieds de Lille Flandres", price: "A partir de 120€ la nuit", color: "#ff9f45", link: "#" },
-      { name: "Okko Hotels Lille Centre", desc: "Hotel 4* bien situé, proche de la Grand-Place, tout neuf, conseillé.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#4d96ff", link: "#" },
-      { name: "Mercure Lille Centre Grand Place", desc: "Hotel 4* bien situé, proche de la Grand-Place.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 150€ la nuit", color: "#2d3142", link: "#" },
-      { name: "Mama Shelter Lille", desc: "Hotel 3* juste à coté des gares. Brunch d'enfer pour le petit déj.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 150€ la nuit", color: "#2d3142", link: "#" }
+      { name: "Okko Hotels Lille Centre", desc: "Hotel 4* bien situé, proche de la Grand-Place, tout neuf, conseillé.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#ffe66d", link: "https://www.okkohotels.com/fr/page/lille/okko-hotels-lille-centre-hotel-4-etoiles-a-deux-pas-de-la-grande-place.24897.html" },
+      { name: "Moxy Lille Centre", desc: "Hotel 3* moderne et accueillant.", dist: "25 min à pieds de Lille Flandres", price: "A partir de 149€ la nuit", color: "#ff9f45", link: "https://www.marriott.com/fr/hotels/lilox-moxy-lille-city/overview/" },
+      { name: "Novotel Lille Centre Gares", desc: "Hotel 4* classique des standards Novotel.", dist: "15 min à pieds de Lille Flandres", price: "A partir de 140€ la nuit", color: "#4d96ff", link: "https://all.accor.com/hotel/3165/index.fr.shtml" },
+      { name: "Ibis Lille Centre Grand Palais", desc: "Hotel 3* à coté de la gare, pas cher.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#ffe66d", link: "https://all.accor.com/booking/fr/mercure/hotel/9309" },
+      { name: "Mama Shelter Lille", desc: "Hotel 3* juste à coté des gares. Brunch d'enfer pour le petit déj.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 160€ la nuit", color: "#ff9f45", link: "https://all.accor.com/booking/fr/mercure/hotel/B1C1" }
     ];
 
     var TIMETABLE = {
       "Vendredi 1 Octobre": [
         { t: "10:00", title: "Préparation des lieux", desc: "Pour l'équipe d'organisation, aller chercher les éléments de décoration.", c: "#ffe66d" },
-        { t: "18:00", title: "Première arrivée possible pour les gens qui viennent de très loin", desc: "On the terrace, with light snacks.", c: "#ff9f45" },
+        { t: "18:00", title: "Premières arrivées possibles", desc: "Pour les gens qui viennent de très loin.", c: "#ff9f45" },
         { t: "19:30", title: "Repas informel", desc: "Repas cosy entre membres de l'organisation et invités arrivés de loin.", c: "#4d96ff" }
       ],
       "Samedi 2 Octobre": [
@@ -1096,7 +1104,7 @@
       HOTELS.forEach(function (h) {
         host.appendChild(el("article", { "class": "hotel" },
           '<div class="band" style="background:' + h.color + '"></div><div class="inner"><h3>' + esc(h.name) + "</h3><p>" + esc(h.desc) +
-          '</p><div class="meta"><span>' + esc(h.dist) + "</span><span>" + esc(h.price) + '</span></div><a class="btn" href="' + esc(h.link) + '" target="_blank" rel="noopener">Check availability</a></div>'));
+          '</p><div class="meta"><span>' + esc(h.dist) + "</span><span>" + esc(h.price) + '</span></div><a class="btn" href="' + esc(h.link) + '" target="_blank" rel="noopener">Vérifier la disponibilité</a></div>'));
       });
     })();
 
