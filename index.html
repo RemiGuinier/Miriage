@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mariage Rémi & Chloé</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --yellow: #ffe66d;
-    --orange: #ff9f45;
-    --blue: #4d96ff;
-    --navy: #2d3142;
-    --cream: #fffaf0;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mariage Rémi & Chloé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #ffe66d;
+      --orange: #ff9f45;
+      --blue: #4d96ff;
+      --navy: #2d3142;
+      --cream: #fffaf0;
 
-    --bg: var(--cream);
-    --surface: #ffffff;
-    --text: var(--navy);
-    --muted: #5d6279;
-    --line: rgba(45, 49, 66, 0.14);
-    --nav-bg: var(--navy);
-    --nav-text: var(--cream);
-    --link: #1f63d1;
+      --bg: var(--cream);
+      --surface: #ffffff;
+      --text: var(--navy);
+      --muted: #5d6279;
+      --line: rgba(45, 49, 66, 0.14);
+      --nav-bg: var(--navy);
+      --nav-text: var(--cream);
+      --link: #1f63d1;
 
-    --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
-    --body: "DM Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+      --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
+      --body: "DM Sans", "Segoe UI", Helvetica, Arial, sans-serif;
 
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #23263a;
+        --surface: #2d3142;
+        --text: var(--cream);
+        --muted: #b9bccb;
+        --line: rgba(255, 250, 240, 0.16);
+        --nav-bg: #1a1c2b;
+        --link: #8bb8ff;
+      }
+    }
+
+    :root[data-theme="dark"] {
       --bg: #23263a;
       --surface: #2d3142;
       --text: var(--cream);
@@ -41,645 +56,1099 @@
       --nav-bg: #1a1c2b;
       --link: #8bb8ff;
     }
-  }
-  :root[data-theme="dark"] {
-    --bg: #23263a;
-    --surface: #2d3142;
-    --text: var(--cream);
-    --muted: #b9bccb;
-    --line: rgba(255, 250, 240, 0.16);
-    --nav-bg: #1a1c2b;
-    --link: #8bb8ff;
-  }
 
-  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px); }
-  *, *::before, *::after { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0 0 auto;
-    height: env(safe-area-inset-top, 0px);
-    background: var(--nav-bg);
-    z-index: 30;
-  }
-  h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0; letter-spacing: -0.02em; }
-  p { margin: 0 0 1em; max-width: 62ch; }
-  a { color: var(--link); }
-  :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+    html {
+      scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px);
+    }
 
-  /* ---------- Navigation ---------- */
-  .topbar {
-    position: sticky;
-    top: env(safe-area-inset-top, 0px);
-    z-index: 20;
-    background: var(--nav-bg);
-    color: var(--nav-text);
-    border-bottom: 4px solid var(--orange);
-  }
-  .topbar-inner {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .brand {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: var(--yellow);
-    text-decoration: none;
-    white-space: nowrap;
-    padding: 14px 0;
-  }
-  .tabs {
-    display: flex;
-    gap: 4px;
-    margin: 0 0 0 auto;
-    padding: 0;
-    list-style: none;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tabs a {
-    display: block;
-    padding: 16px 14px 12px;
-    color: var(--nav-text);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.97rem;
-    white-space: nowrap;
-    border-bottom: 4px solid transparent;
-    margin-bottom: -4px;
-    transition: color .15s, border-color .15s;
-  }
-  .tabs a:hover { color: var(--yellow); }
-  .tabs a[aria-current="page"] {
-    color: var(--yellow);
-    border-bottom-color: var(--yellow);
-    font-weight: 700;
-  }
-  @media (max-width: 760px) {
-    .brand { display: none; }
-    .topbar-inner { padding: 0 8px; }
-    .tabs { margin: 0; }
-  }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-  /* ---------- Views ---------- */
-  .view { display: none; }
-  .view.active { display: block; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-  .page-head { padding: 56px 0 28px; }
-  .page-head h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
-  .page-head p { color: var(--muted); margin-top: 14px; font-size: 1.15rem; }
-  .page-body { padding-bottom: 80px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
 
-  /* ---------- Home ---------- */
-  .hero { padding: 56px 0 24px; }
-  .hero h1 {
-    font-size: clamp(2.8rem, 9vw, 6.4rem);
-    font-weight: 800;
-    max-width: 14ch;
-  }
-  .hero h1 .sun { background: var(--yellow); color: var(--navy); padding: 0 .14em; border-radius: .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  .hero-sub {
-    margin-top: 22px;
-    font-size: 1.25rem;
-    color: var(--muted);
-    max-width: 40ch;
-  }
-  .photos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(10px, 2vw, 24px);
-    margin: 44px 0 0;
-    align-items: end;
-  }
-  .photo { margin: 0; overflow: hidden; aspect-ratio: 3 / 4; background: var(--surface); }
-  .photo svg, .photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
-  .photo:nth-child(1) { border-radius: 999px 999px 18px 18px; }
-  .photo:nth-child(2) { border-radius: 18px; aspect-ratio: 3 / 3.6; }
-  .photo:nth-child(3) { border-radius: 999px 18px 999px 18px; }
-  .facts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin: 56px 0 0;
-    padding: 28px 0 0;
-    border-top: 2px solid var(--text);
-  }
-  .fact h3 { font-size: 1.35rem; margin-bottom: 6px; }
-  .fact p { color: var(--muted); margin: 0; }
-  .fact .swatch { width: 28px; height: 8px; border-radius: 4px; margin-bottom: 14px; }
-  .intro { margin-top: 56px; font-size: 1.2rem; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: env(safe-area-inset-top, 0px);
+      background: var(--nav-bg);
+      z-index: 30;
+    }
 
-  /* ---------- Shared components ---------- */
-  .embed {
-    border: 3px solid var(--text);
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--surface);
-  }
-  .embed iframe { display: block; width: 100%; height: 460px; border: 0; }
-  .embed.form iframe { height: 920px; }
-  .btn {
-    display: inline-block;
-    background: var(--orange);
-    color: var(--navy);
-    font-weight: 700;
-    text-decoration: none;
-    padding: 12px 22px;
-    border-radius: 999px;
-    border: 2px solid var(--navy);
-    transition: transform .12s;
-  }
-  .btn:hover { transform: translateY(-2px); }
-  .btn.ghost { background: transparent; color: var(--text); border-color: var(--text); }
-  .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-  .address-card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
-    margin-bottom: 28px;
-  }
-  .address-card h3 { font-size: 1.15rem; margin-bottom: 4px; }
-  .address-card p { margin: 0; color: var(--muted); }
+    h1,
+    h2,
+    h3 {
+      font-family: var(--display);
+      line-height: 1.08;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
 
-  /* Menu */
-  .courses { display: grid; gap: 28px; }
-  .course {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 24px;
-    padding-top: 24px;
-    border-top: 2px solid var(--text);
-  }
-  .course > h3 { font-size: 1.6rem; }
-  .course > h3 small { display: block; font-family: var(--body); font-weight: 400; font-size: .95rem; color: var(--muted); letter-spacing: 0; margin-top: 4px; }
-  .dishes { display: grid; gap: 18px; }
-  .dish h4 { margin: 0 0 2px; font-size: 1.1rem; font-weight: 700; }
-  .dish p { margin: 0; color: var(--muted); }
-  .tag {
-    display: inline-block;
-    font-size: .8rem;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 999px;
-    margin-left: 6px;
-    vertical-align: 2px;
-    color: var(--navy);
-  }
-  .tag.v { background: var(--yellow); }
-  .tag.vg { background: var(--orange); }
-  .tag.gf { background: var(--blue); color: #fff; }
-  @media (max-width: 680px) { .course { grid-template-columns: 1fr; gap: 12px; } }
-  .note { margin-top: 36px; padding: 18px 22px; background: var(--yellow); color: var(--navy); border-radius: 14px; }
-  .note p { margin: 0; }
+    p {
+      margin: 0 0 1em;
+      max-width: 62ch;
+    }
 
-  /* Car sharing */
-  .split { display: grid; grid-template-columns: 1fr 1.6fr; gap: 32px; align-items: start; }
-  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
-  .steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; counter-reset: s; }
-  .steps li { counter-increment: s; padding-left: 52px; position: relative; }
-  .steps li::before {
-    content: counter(s);
-    position: absolute; left: 0; top: 0;
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--blue); color: #fff;
-    font-family: var(--display); font-weight: 800;
-    display: grid; place-items: center;
-  }
-  .steps strong { display: block; }
-  .steps span { color: var(--muted); }
-  .placeholder {
-    padding: 36px 28px;
-    text-align: left;
-  }
-  .placeholder h3 { margin-bottom: 8px; font-size: 1.4rem; }
+    a {
+      color: var(--link);
+    }
 
-  /* Hotels */
-  .hotels { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
-  .hotel {
-    background: var(--surface);
-    border: 2px solid var(--text);
-    border-radius: 18px;
-    overflow: hidden;
-    display: flex; flex-direction: column;
-  }
-  .hotel .band { height: 14px; }
-  .hotel .inner { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .hotel h3 { font-size: 1.4rem; }
-  .hotel p { margin: 0; color: var(--muted); }
-  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-weight: 500; font-size: .95rem; }
-  .hotel .btn { align-self: flex-start; margin-top: auto; padding: 9px 18px; font-size: .95rem; }
+    :focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
 
-  /* Timetable */
-  .days { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
-  .day-btn {
-    font: inherit; font-weight: 700;
-    padding: 10px 20px;
-    border-radius: 999px;
-    border: 2px solid var(--text);
-    background: transparent; color: var(--text);
-    cursor: pointer;
-  }
-  .day-btn[aria-pressed="true"] { background: var(--navy); color: var(--cream); }
-  :root[data-theme="dark"] .day-btn[aria-pressed="true"] { background: var(--yellow); color: var(--navy); border-color: var(--yellow); }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .day-btn[aria-pressed="true"] { background: var(--yellow); color: var(--navy); border-color: var(--yellow); }
-  }
-  .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
-  .timeline::before { content: ""; position: absolute; left: 108px; top: 8px; bottom: 8px; width: 3px; background: var(--line); }
-  .slot { display: grid; grid-template-columns: 90px 1fr; gap: 36px; padding: 14px 0; position: relative; }
-  .slot time { font-family: var(--display); font-weight: 700; font-size: 1.2rem; text-align: right; padding-top: 2px; }
-  .slot::before {
-    content: ""; position: absolute; left: 100px; top: 22px;
-    width: 19px; height: 19px; border-radius: 50%;
-    background: var(--c, var(--blue));
-    border: 3px solid var(--bg);
-  }
-  .slot h3 { font-size: 1.3rem; margin-bottom: 2px; }
-  .slot p { margin: 0; color: var(--muted); }
-  @media (max-width: 560px) {
-    .timeline::before { left: 62px; }
-    .slot { grid-template-columns: 52px 1fr; gap: 28px; }
-    .slot::before { left: 54px; }
-    .slot time { font-size: 1rem; }
-  }
+    /* ---------- Navigation ---------- */
+    .topbar {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 20;
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      border-bottom: 4px solid var(--orange);
+    }
 
-  footer { background: var(--navy); color: var(--cream); padding: 36px 0; }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-  footer p { margin: 0; }
-  footer .dots { display: flex; gap: 8px; align-items: center; }
-  footer .dots i { width: 14px; height: 14px; border-radius: 50%; display: block; }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
 
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-</style>
+    .brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--yellow);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 14px 0;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin: 0 0 0 auto;
+      padding: 0;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tabs a {
+      display: block;
+      padding: 16px 14px 12px;
+      color: var(--nav-text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.97rem;
+      white-space: nowrap;
+      border-bottom: 4px solid transparent;
+      margin-bottom: -4px;
+      transition: color .15s, border-color .15s;
+    }
+
+    .tabs a:hover {
+      color: var(--yellow);
+    }
+
+    .tabs a[aria-current="page"] {
+      color: var(--yellow);
+      border-bottom-color: var(--yellow);
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .brand {
+        display: none;
+      }
+
+      .topbar-inner {
+        padding: 0 8px;
+      }
+
+      .tabs {
+        margin: 0;
+      }
+    }
+
+    /* ---------- Views ---------- */
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .page-head {
+      padding: 56px 0 28px;
+    }
+
+    .page-head h2 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+    }
+
+    .page-head p {
+      color: var(--muted);
+      margin-top: 14px;
+      font-size: 1.15rem;
+    }
+
+    .page-body {
+      padding-bottom: 80px;
+    }
+
+    /* ---------- Home ---------- */
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 9vw, 6.4rem);
+      font-weight: 800;
+      max-width: 14ch;
+    }
+
+    .hero h1 .sun {
+      background: var(--yellow);
+      color: var(--navy);
+      padding: 0 .14em;
+      border-radius: .12em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .hero-sub {
+      margin-top: 22px;
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 40ch;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(10px, 2vw, 24px);
+      margin: 44px 0 0;
+      align-items: end;
+    }
+
+    .photo {
+      margin: 0;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      background: var(--surface);
+    }
+
+    .photo svg,
+    .photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo:nth-child(1) {
+      border-radius: 999px 999px 18px 18px;
+    }
+
+    .photo:nth-child(2) {
+      border-radius: 18px;
+      aspect-ratio: 3 / 3.6;
+    }
+
+    .photo:nth-child(3) {
+      border-radius: 999px 18px 999px 18px;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 56px 0 0;
+      padding: 28px 0 0;
+      border-top: 2px solid var(--text);
+    }
+
+    .fact h3 {
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+    }
+
+    .fact p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .fact .swatch {
+      width: 28px;
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      margin-top: 56px;
+      font-size: 1.2rem;
+    }
+
+    /* ---------- Shared components ---------- */
+    .embed {
+      border: 3px solid var(--text);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .embed iframe {
+      display: block;
+      width: 100%;
+      height: 460px;
+      border: 0;
+    }
+
+    .embed.form iframe {
+      height: 920px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--navy);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 2px solid var(--navy);
+      transition: transform .12s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .address-card {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .address-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .address-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Menu */
+    .courses {
+      display: grid;
+      gap: 28px;
+    }
+
+    .course {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 2px solid var(--text);
+    }
+
+    .course>h3 {
+      font-size: 1.6rem;
+    }
+
+    .course>h3 small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: .95rem;
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-top: 4px;
+    }
+
+    .dishes {
+      display: grid;
+      gap: 18px;
+    }
+
+    .dish h4 {
+      margin: 0 0 2px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .dish p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: 2px;
+      color: var(--navy);
+    }
+
+    .tag.v {
+      background: var(--yellow);
+    }
+
+    .tag.vg {
+      background: var(--orange);
+    }
+
+    .tag.gf {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    @media (max-width: 680px) {
+      .course {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    .note {
+      margin-top: 36px;
+      padding: 18px 22px;
+      background: var(--yellow);
+      color: var(--navy);
+      border-radius: 14px;
+    }
+
+    .note p {
+      margin: 0;
+    }
+
+    /* Car sharing */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 18px;
+      counter-reset: s;
+    }
+
+    .steps li {
+      counter-increment: s;
+      padding-left: 52px;
+      position: relative;
+    }
+
+    .steps li::before {
+      content: counter(s);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+
+    .steps strong {
+      display: block;
+    }
+
+    .steps span {
+      color: var(--muted);
+    }
+
+    .placeholder {
+      padding: 36px 28px;
+      text-align: left;
+    }
+
+    .placeholder h3 {
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    /* Hotels */
+    .hotels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .hotel {
+      background: var(--surface);
+      border: 2px solid var(--text);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hotel .band {
+      height: 14px;
+    }
+
+    .hotel .inner {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .hotel h3 {
+      font-size: 1.4rem;
+    }
+
+    .hotel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      font-weight: 500;
+      font-size: .95rem;
+    }
+
+    .hotel .btn {
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 9px 18px;
+      font-size: .95rem;
+    }
+
+    /* Timetable */
+    .days {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .day-btn {
+      font: inherit;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 2px solid var(--text);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .day-btn[aria-pressed="true"] {
+      background: var(--navy);
+      color: var(--cream);
+    }
+
+    :root[data-theme="dark"] .day-btn[aria-pressed="true"] {
+      background: var(--yellow);
+      color: var(--navy);
+      border-color: var(--yellow);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .day-btn[aria-pressed="true"] {
+        background: var(--yellow);
+        color: var(--navy);
+        border-color: var(--yellow);
+      }
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 108px;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: var(--line);
+    }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 36px;
+      padding: 14px 0;
+      position: relative;
+    }
+
+    .slot time {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    .slot::before {
+      content: "";
+      position: absolute;
+      left: 100px;
+      top: 22px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: var(--c, var(--blue));
+      border: 3px solid var(--bg);
+    }
+
+    .slot h3 {
+      font-size: 1.3rem;
+      margin-bottom: 2px;
+    }
+
+    .slot p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 560px) {
+      .timeline::before {
+        left: 62px;
+      }
+
+      .slot {
+        grid-template-columns: 52px 1fr;
+        gap: 28px;
+      }
+
+      .slot::before {
+        left: 54px;
+      }
+
+      .slot time {
+        font-size: 1rem;
+      }
+    }
+
+    footer {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 36px 0;
+    }
+
+    footer .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer .dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    footer .dots i {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#home" data-link>Mariage Chloé & Rémi</a>
-    <nav aria-label="Main">
-      <ul class="tabs" id="tabs">
-        <li><a href="#home" data-link>Accueil</a></li>
-        <li><a href="#location" data-link>Lieux</a></li>
-        <li><a href="#menu" data-link>Menu</a></li>
-        <li><a href="#carsharing" data-link>Covoit'</a></li>
-        <li><a href="#hotels" data-link>Logements</a></li>
-        <li><a href="#timetable" data-link>Programme</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-  <!-- ===== Accueil ===== -->
-  <section class="view" id="view-home" aria-label="Accueil">
-    <div class="wrap">
-      <div class="hero">
-        <h1>Nous allons nous <span class="sun">marier</span>, rejoignez nous !</h1>
-        <p class="hero-sub">Rendez-vous le 02 Octobre 2027 pour notre mariage ! Ce site contient toutes les informations nécéssaires pour planifier votre venue !</p>
-      </div>
-
-      <!-- Replace these three illustrations with your own photos (see notes) -->
-      <div class="photos" id="photos">
-        <figure class="photo">
-          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a sun over green hills">
-            <rect width="300" height="400" fill="#ffe66d"/>
-            <circle cx="150" cy="140" r="64" fill="#ff9f45"/>
-            <g stroke="#ff9f45" stroke-width="8" stroke-linecap="round">
-              <path d="M150 40v-18M150 258v-18M50 140H32M268 140h-18M79 69L66 56M234 224l-13-13M221 69l13-13M66 224l13-13"/>
-            </g>
-            <path d="M0 300 Q90 230 180 290 T300 270 V400 H0Z" fill="#4d96ff"/>
-            <path d="M0 350 Q110 300 210 345 T300 330 V400 H0Z" fill="#2d3142"/>
-          </svg>
-        </figure>
-        <figure class="photo">
-          <svg viewBox="0 0 300 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of string lights over a long table">
-            <rect width="300" height="360" fill="#4d96ff"/>
-            <path d="M-10 60 Q75 130 150 70 T310 70" fill="none" stroke="#2d3142" stroke-width="4"/>
-            <g>
-              <circle cx="38" cy="95" r="12" fill="#ffe66d"/><circle cx="85" cy="112" r="12" fill="#ff9f45"/>
-              <circle cx="135" cy="92" r="12" fill="#fffaf0"/><circle cx="190" cy="82" r="12" fill="#ffe66d"/>
-              <circle cx="240" cy="90" r="12" fill="#ff9f45"/><circle cx="285" cy="76" r="12" fill="#fffaf0"/>
-            </g>
-            <rect x="0" y="250" width="300" height="110" fill="#2d3142"/>
-            <rect x="0" y="240" width="300" height="16" fill="#fffaf0"/>
-            <g fill="#ffe66d"><rect x="52" y="196" width="26" height="44" rx="6"/><rect x="146" y="196" width="26" height="44" rx="6"/><rect x="232" y="196" width="26" height="44" rx="6"/></g>
-            <g fill="#ff9f45"><circle cx="100" cy="226" r="14"/><circle cx="196" cy="226" r="14"/></g>
-          </svg>
-        </figure>
-        <figure class="photo">
-          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a bouquet of flowers">
-            <rect width="300" height="400" fill="#ff9f45"/>
-            <g stroke="#2d3142" stroke-width="6" stroke-linecap="round" fill="none">
-              <path d="M150 380V220M150 330Q100 280 90 190M150 330Q200 270 215 170"/>
-            </g>
-            <g>
-              <circle cx="150" cy="190" r="46" fill="#fffaf0"/><circle cx="150" cy="190" r="18" fill="#ffe66d"/>
-              <circle cx="90" cy="165" r="38" fill="#4d96ff"/><circle cx="90" cy="165" r="14" fill="#ffe66d"/>
-              <circle cx="215" cy="150" r="38" fill="#ffe66d"/><circle cx="215" cy="150" r="14" fill="#2d3142"/>
-            </g>
-            <path d="M95 380h110l-14-60H109Z" fill="#2d3142"/>
-          </svg>
-        </figure>
-      </div>
-
-      <p class="intro">Nous sommes très heureux de vous recevoir ! Utilisez les onglets ci-dessus pour trouver le lieu, consulter le menu, organiser un covoiturage, réserver une chambre et consulter le programme.</p>
-
-      <div class="facts">
-        <div class="fact"><div class="swatch" style="background:var(--yellow)"></div><h3>Quand ?</h3><p>Du Samedi 2 au Dimanche 3 Octobre 2027</p></div>
-        <div class="fact"><div class="swatch" style="background:var(--orange)"></div><h3>Où ?</h3><p>Domaine de Ronceval à Mouscron (Belgique), avec parking gratuit sur site !</p></div>
-        <div class="fact"><div class="swatch" style="background:var(--blue)"></div><h3>Répondez avant le</h3><p>Vendredi 31 Aout 2027, en utilisant le QR Code sur votre invitation !</p></div>
-      </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" data-link>Mariage Chloé & Rémi</a>
+      <nav aria-label="Main">
+        <ul class="tabs" id="tabs">
+          <li><a href="#home" data-link>Accueil</a></li>
+          <li><a href="#location" data-link>Lieux</a></li>
+          <li><a href="#menu" data-link>Menu</a></li>
+          <li><a href="#carsharing" data-link>Covoit'</a></li>
+          <li><a href="#hotels" data-link>Logements</a></li>
+          <li><a href="#timetable" data-link>Programme</a></li>
+        </ul>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- ===== LOCATION ===== -->
-  <section class="view" id="view-location" aria-label="Location">
-    <div class="wrap">
-      <div class="page-head">
-        <h2>Lieux</h2>
-        <p>La fête se déroule au Domaine de Ronceval en Belgique. Le stationnement est gratuit et l'entrée est indiquée depuis la route principale.</p>
-      </div>
-      <div class="page-body">
-        <div class="address-card">
-          <div><h3>Adresse</h3><p id="addr-text"></p></div>
-          <div><h3>En voiture</h3><p>À environ 30 minutes du centre-ville de Lille. Suivez les panneaux après le rond-point.</p></div>
-          <div><h3>En train</h3><p>La gare la plus proche se trouve à 12 minutes en taxi. Nous pouvons organiser une navette sur demande.</p></div>
-        </div>
-        <div class="embed" id="map-box">
-          <iframe id="map-frame" title="Carte du lieu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        </div>
-        <div class="row">
-          <a class="btn" id="map-open" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-          <a class="btn ghost" id="map-route" target="_blank" rel="noopener">Démarrer un itinéraire</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main>
 
-  <!-- ===== MENU ===== -->
-  <section class="view" id="view-menu" aria-label="Menu">
-    <div class="wrap">
-      <div class="page-head">
-        <h2>Menu</h2>
-        <p>A seasonal menu with local produce. Tags show which dishes are vegetarian, vegan or gluten-free.</p>
-      </div>
-      <div class="page-body">
-        <div class="courses" id="courses"></div>
-        <div class="note"><p><strong>Allergies or dietary needs?</strong> Tell us when you reply and the kitchen will prepare an alternative for you.</p></div>
-      </div>
-    </div>
-  </section>
+    <!-- ===== Accueil ===== -->
+    <section class="view" id="view-home" aria-label="Accueil">
+      <div class="wrap">
+        <div class="hero">
+          <h1>Nous allons nous <span class="sun">marier</span>, rejoignez nous !</h1>
+          <p class="hero-sub">Rendez-vous le 02 Octobre 2027 pour notre mariage ! Ce site contient toutes les
+            informations nécéssaires pour planifier votre venue !</p>
+        </div>
 
-  <!-- ===== CAR-SHARING ===== -->
-  <section class="view" id="view-carsharing" aria-label="Car-sharing">
-    <div class="wrap">
-      <div class="page-head">
-        <h2>Car-sharing</h2>
-        <p>Offer a seat or ask for a lift. Fewer cars means easier parking and a better journey.</p>
-      </div>
-      <div class="page-body">
-        <div class="split">
-          <ol class="steps">
-            <li><strong>Fill in the form</strong><span>Say whether you’re driving or need a ride.</span></li>
-            <li><strong>Add your departure city</strong><span>Include the day and time you plan to leave.</span></li>
-            <li><strong>We match you up</strong><span>We’ll send you the contact details of people on your route.</span></li>
-          </ol>
-          <div>
-            <div class="embed form" id="form-box"></div>
-            <div class="row"><a class="btn ghost" id="form-open" target="_blank" rel="noopener">Open the form in a new tab</a></div>
+        <!-- Replace these three illustrations with your own photos (see notes) -->
+        <div class="photos" id="photos">
+          <figure class="photo">
+            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img"
+              aria-label="Illustration of a sun over green hills">
+              <rect width="300" height="400" fill="#ffe66d" />
+              <circle cx="150" cy="140" r="64" fill="#ff9f45" />
+              <g stroke="#ff9f45" stroke-width="8" stroke-linecap="round">
+                <path
+                  d="M150 40v-18M150 258v-18M50 140H32M268 140h-18M79 69L66 56M234 224l-13-13M221 69l13-13M66 224l13-13" />
+              </g>
+              <path d="M0 300 Q90 230 180 290 T300 270 V400 H0Z" fill="#4d96ff" />
+              <path d="M0 350 Q110 300 210 345 T300 330 V400 H0Z" fill="#2d3142" />
+            </svg>
+          </figure>
+          <figure class="photo">
+            <svg viewBox="0 0 300 360" preserveAspectRatio="xMidYMid slice" role="img"
+              aria-label="Illustration of string lights over a long table">
+              <rect width="300" height="360" fill="#4d96ff" />
+              <path d="M-10 60 Q75 130 150 70 T310 70" fill="none" stroke="#2d3142" stroke-width="4" />
+              <g>
+                <circle cx="38" cy="95" r="12" fill="#ffe66d" />
+                <circle cx="85" cy="112" r="12" fill="#ff9f45" />
+                <circle cx="135" cy="92" r="12" fill="#fffaf0" />
+                <circle cx="190" cy="82" r="12" fill="#ffe66d" />
+                <circle cx="240" cy="90" r="12" fill="#ff9f45" />
+                <circle cx="285" cy="76" r="12" fill="#fffaf0" />
+              </g>
+              <rect x="0" y="250" width="300" height="110" fill="#2d3142" />
+              <rect x="0" y="240" width="300" height="16" fill="#fffaf0" />
+              <g fill="#ffe66d">
+                <rect x="52" y="196" width="26" height="44" rx="6" />
+                <rect x="146" y="196" width="26" height="44" rx="6" />
+                <rect x="232" y="196" width="26" height="44" rx="6" />
+              </g>
+              <g fill="#ff9f45">
+                <circle cx="100" cy="226" r="14" />
+                <circle cx="196" cy="226" r="14" />
+              </g>
+            </svg>
+          </figure>
+          <figure class="photo">
+            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img"
+              aria-label="Illustration of a bouquet of flowers">
+              <rect width="300" height="400" fill="#ff9f45" />
+              <g stroke="#2d3142" stroke-width="6" stroke-linecap="round" fill="none">
+                <path d="M150 380V220M150 330Q100 280 90 190M150 330Q200 270 215 170" />
+              </g>
+              <g>
+                <circle cx="150" cy="190" r="46" fill="#fffaf0" />
+                <circle cx="150" cy="190" r="18" fill="#ffe66d" />
+                <circle cx="90" cy="165" r="38" fill="#4d96ff" />
+                <circle cx="90" cy="165" r="14" fill="#ffe66d" />
+                <circle cx="215" cy="150" r="38" fill="#ffe66d" />
+                <circle cx="215" cy="150" r="14" fill="#2d3142" />
+              </g>
+              <path d="M95 380h110l-14-60H109Z" fill="#2d3142" />
+            </svg>
+          </figure>
+        </div>
+
+        <p class="intro">Nous sommes très heureux de vous recevoir ! Utilisez les onglets ci-dessus pour trouver le
+          lieu, consulter le menu, organiser un covoiturage, réserver une chambre et consulter le programme.</p>
+
+        <div class="facts">
+          <div class="fact">
+            <div class="swatch" style="background:var(--yellow)"></div>
+            <h3>Quand ?</h3>
+            <p>Du Samedi 2 au Dimanche 3 Octobre 2027</p>
+          </div>
+          <div class="fact">
+            <div class="swatch" style="background:var(--orange)"></div>
+            <h3>Où ?</h3>
+            <p>Domaine de Ronceval à Mouscron (Belgique), avec parking gratuit sur site !</p>
+          </div>
+          <div class="fact">
+            <div class="swatch" style="background:var(--blue)"></div>
+            <h3>Répondez avant le</h3>
+            <p>Vendredi 31 Aout 2027, en utilisant le QR Code sur votre invitation !</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== HOTELS ===== -->
-  <section class="view" id="view-hotels" aria-label="Hotels">
+    <!-- ===== LOCATION ===== -->
+    <section class="view" id="view-location" aria-label="Location">
+      <div class="wrap">
+        <div class="page-head">
+          <h2>Lieux</h2>
+          <p>La fête se déroule au Domaine de Ronceval en Belgique. Le stationnement est gratuit et l'entrée est
+            indiquée depuis la route principale.</p>
+        </div>
+        <div class="page-body">
+          <div class="address-card">
+            <div>
+              <h3>Adresse</h3>
+              <p id="addr-text"></p>
+            </div>
+            <div>
+              <h3>En voiture</h3>
+              <p>À environ 30 minutes du centre-ville de Lille. Suivez les panneaux après le rond-point.</p>
+            </div>
+            <div>
+              <h3>En train</h3>
+              <p>La gare la plus proche se trouve à 12 minutes en taxi. Nous pouvons organiser une navette sur demande.
+              </p>
+            </div>
+          </div>
+          <div class="embed" id="map-box">
+            <iframe id="map-frame" title="Carte du lieu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+          <div class="row">
+            <a class="btn" id="map-open" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+            <a class="btn ghost" id="map-route" target="_blank" rel="noopener">Démarrer un itinéraire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MENU ===== -->
+    <section class="view" id="view-menu" aria-label="Menu">
+      <div class="wrap">
+        <div class="page-head">
+          <h2>Menu</h2>
+          <p>Un menu de saison à orientation locale, servi à table. Les tags montrent quels plats sont végétariens,
+            végétaliens ou sans
+            gluten.</p>
+        </div>
+        <div class="page-body">
+          <div class="courses" id="courses"></div>
+          <div class="note">
+            <p><strong>Allergies ou régimes alimentaires?</strong> Indiquez-le dans votre réponse et nous préparerons
+              une alternative pour vous.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CAR-SHARING ===== -->
+    <section class="view" id="view-carsharing" aria-label="Car-sharing">
+      <div class="wrap">
+        <div class="page-head">
+          <h2>Covoiturage</h2>
+          <p>Offrez une place dans votre voiture ou demandez un transport.</p>
+        </div>
+        <div class="page-body">
+          <div class="split">
+            <ol class="steps">
+              <li><strong>Remplissez le formulaire</strong><span>Précisez si vous proposez ou si vous avez besoin de
+                  transport.</span></li>
+              <li><strong>Ajoutez votre ville de départ</strong><span>Indiquez le jour et l’heure approximative de votre
+                  départ.</span></li>
+              <li><strong>Nous vous mettons en contact</strong><span>Nous vous enverrons les coordonnées des personnes
+                  se trouvant sur votre trajet.</span></li>
+            </ol>
+            <div>
+              <div class="embed form" id="form-box"></div>
+              <div class="row"><a class="btn ghost" id="form-open" target="_blank" rel="noopener">Open the form in a new
+                  tab</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOTELS ===== -->
+    <section class="view" id="view-hotels" aria-label="Hotels">
+      <div class="wrap">
+        <div class="page-head">
+          <h2>Hôtels</h2>
+          <p>Nous vous conseillons de réserver rapidement, car les chambres près du lieu de réception affichent complet
+            assez vite en juin.</p>
+        </div>
+        <div class="page-body">
+          <div class="hotels" id="hotels"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TIMETABLE ===== -->
+    <section class="view" id="view-timetable" aria-label="Timetable">
+      <div class="wrap">
+        <div class="page-head">
+          <h2>Programme</h2>
+          <p>Les horaires peuvent légèrement varier le jour J. Nous communiquerons les changements à l’accueil.</p>
+        </div>
+        <div class="page-body">
+          <div class="days" id="days" role="group" aria-label="Choose a day"></div>
+          <ol class="timeline" id="timeline"></ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
     <div class="wrap">
-      <div class="page-head">
-        <h2>Hotels</h2>
-        <p>We suggest booking early, because rooms near the venue fill up quickly in June.</p>
-      </div>
-      <div class="page-body">
-        <div class="hotels" id="hotels"></div>
+      <p>Mariage Chloé & Rémi · 2 & 3 Octobre 2027</p>
+      <div class="dots" aria-hidden="true">
+        <i style="background:#ffe66d"></i><i style="background:#ff9f45"></i><i style="background:#4d96ff"></i>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- ===== TIMETABLE ===== -->
-  <section class="view" id="view-timetable" aria-label="Timetable">
-    <div class="wrap">
-      <div class="page-head">
-        <h2>Timetable</h2>
-        <p>Times may shift slightly on the day. We’ll announce any change at the welcome desk.</p>
-      </div>
-      <div class="page-body">
-        <div class="days" id="days" role="group" aria-label="Choose a day"></div>
-        <ol class="timeline" id="timeline"></ol>
-      </div>
-    </div>
-  </section>
+  <script>
+    /* =========================================================
+       EDIT YOUR EVENT DETAILS HERE
+       ========================================================= */
+    var CONFIG = {
+      venueName: "Domaine de Ronceval",
+      venueAddress: "Rue de l'Espierres 84, 7711 Mouscron, Belgique",   /* used for the map */
+      /* Google Forms: File > Send > "<>" tab, then copy the URL inside src="..." */
+      formEmbedUrl: "",   /* e.g. https://docs.google.com/forms/d/e/XXXX/viewform?embedded=true */
+      formShareUrl: ""    /* e.g. https://forms.gle/XXXX */
+    };
 
-</main>
+    var MENU = [
+      {
+        course: "Vin D'Honneur", note: "Samedi après-midi", dishes: [
+          { name: "Pologne", desc: "Chou, Pomme, Cornichons et Metka", tags: [] },
+          { name: "Espagne", desc: "Chorizo, Pomme de terre, Salmorejo", tags: [] },
+          { name: "Savoie", desc: "Crozets, Beaufort", tags: ["vg"] },
+          { name: "Nord", desc: "Maroilles, Oeufs", tags: ["vg"] },
+          { name: "Dunkerque", desc: "Harang, Chou", tags: [] },
+          { name: "Belgique", desc: "Cheddar, bière", tags: ["vg"] },
+          { name: "Ostrevent", desc: "Champignons, Noix", tags: ["vg"] }
+        ]
+      },
+      {
+        course: "Entrées", note: "Samedi soir", dishes: [
+          { name: "Huevos Perfectos", desc: "Oeuf, Poireaux et Chorizo.", tags: [] },
+          { name: "Huevos Perfectos (Végétarien)", desc: "Oeuf, Poireaux et Comté.", tags: ["vg"] }
+        ]
+      },
+      {
+        course: "Plat principal", note: "Samedi soir", dishes: [
+          { name: "Réconfort du Nord au Sud", desc: "Boeuf, bière, pommes de terres", tags: [] },
+          { name: "Voyage d'Est en Ouest", desc: "Halloumi, haricots rouges, butternut, cheddar, légumes", tags: ["vg"] },
+        ]
+      },
+      {
+        course: "Desserts", note: "Samedi soir", dishes: [
+          { name: "Préféré des mariés", desc: "Oeufs, Vanille", tags: ["vg"] },
+          { name: "Plaisir du Portugal", desc: "Oeufs, Cannelle", tags: ["vg"] },
+          { name: "Atterissage en Pologne", desc: "Oeufs, Abricot, Biscuits", tags: ["vg"] }
+        ]
+      }
+    ];
+    var TAGS = { v: "Végétarien", vg: "Végan", gf: "Sans Gluten" };
 
-<footer>
-  <div class="wrap">
-    <p>Mariage Chloé & Rémi · 2 & 3 Octobre 2027</p>
-    <div class="dots" aria-hidden="true">
-      <i style="background:#ffe66d"></i><i style="background:#ff9f45"></i><i style="background:#4d96ff"></i>
-    </div>
-  </div>
-</footer>
+    var HOTELS = [
+      { name: "Moxy Lille Centre", desc: "Hotel 3* moderne et accueillant.", dist: "25 min à pieds de Lille Flandres", price: "A partir de 129€ la nuit", color: "#ffe66d", link: "#" },
+      { name: "Novotel Lille Centre Gares", desc: "Hotel 4* classique des standards Novotel.", dist: "15 min à pieds de Lille Flandres", price: "A partir de 120€ la nuit", color: "#ff9f45", link: "#" },
+      { name: "Okko Hotels Lille Centre", desc: "Hotel 4* bien situé, proche de la Grand-Place, tout neuf, conseillé.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#4d96ff", link: "#" },
+      { name: "Mercure Lille Centre Grand Place", desc: "Hotel 4* bien situé, proche de la Grand-Place.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 150€ la nuit", color: "#2d3142", link: "#" },
+      { name: "Mama Shelter Lille", desc: "Hotel 3* juste à coté des gares. Brunch d'enfer pour le petit déj.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 150€ la nuit", color: "#2d3142", link: "#" }
+    ];
 
-<script>
-/* =========================================================
-   EDIT YOUR EVENT DETAILS HERE
-   ========================================================= */
-var CONFIG = {
-  venueName: "Domaine de Ronceval",
-  venueAddress: "Rue de l'Espierres 84, 7711 Mouscron, Belgique",   /* used for the map */
-  /* Google Forms: File > Send > "<>" tab, then copy the URL inside src="..." */
-  formEmbedUrl: "",   /* e.g. https://docs.google.com/forms/d/e/XXXX/viewform?embedded=true */
-  formShareUrl: ""    /* e.g. https://forms.gle/XXXX */
-};
+    var TIMETABLE = {
+      "Vendredi 1 Octobre": [
+        { t: "10:00", title: "Préparation des lieux", desc: "Pour l'équipe d'organisation, aller chercher les éléments de décoration.", c: "#ffe66d" },
+        { t: "18:00", title: "Première arrivée possible pour les gens qui viennent de très loin", desc: "On the terrace, with light snacks.", c: "#ff9f45" },
+        { t: "19:30", title: "Repas informel", desc: "Repas cosy entre membres de l'organisation et invités arrivés de loin.", c: "#4d96ff" }
+      ],
+      "Samedi 2 Octobre": [
+        { t: "11:00", title: "Mariage civil à la mairie de Lille", desc: "Mariage civil dans la salle des mariages à Lille, pas d'échange d'alliance", c: "#ffe66d" },
+        { t: "15:00", title: "Cérémonie Laïque", desc: "Cérémonie au domaine de Ronceval avec échange d'alliances, merci d'arriver un petit peu en avance pour vous placer", c: "#ff9f45" },
+        { t: "16:00", title: "Vin D'Honneur", desc: "Sur la pelouse, s'il fait beau, à l'interieur sinon.", c: "#4d96ff" },
+        { t: "19:30", title: "Diner", desc: "En deux temps, servi à table.", c: "#ff9f45" },
+        { t: "22:00", title: "Ouverture de bal", desc: "Début de la danse !", c: "#ffe66d" },
+        { t: "23:00", title: "Dessert", desc: "Gateau et fête jusqu'au bout de la nuit !", c: "#4d96ff" }
+      ],
+      "Dimanche 3 Octobre": [
+        { t: "10:00", title: "Petit déjeuner", desc: "Café et viennoiseries.", c: "#ffe66d" },
+        { t: "12:00", title: "Rebond", desc: "Pour les plus courageux, on se retrouve autour d'un dernier verre et d'un bon repas.", c: "#4d96ff" },
+        { t: "14:00", title: "Début du rangement, fin du mariage", desc: "Merci à tous, rentrez bien.", c: "#ff9f45" }
+      ]
+    };
 
-var MENU = [
-  { course: "Welcome drinks", note: "Friday evening", dishes: [
-    { name: "Elderflower spritz", desc: "Sparkling wine, elderflower, fresh mint.", tags: ["vg","gf"] },
-    { name: "Seasonal cordials", desc: "Strawberry-basil or lemon-ginger, served over ice.", tags: ["vg","gf"] }
-  ]},
-  { course: "Starters", note: "Saturday dinner", dishes: [
-    { name: "Roasted beetroot and goat’s cheese", desc: "Candied walnuts, honey and watercress.", tags: ["v","gf"] },
-    { name: "Smoked trout rillettes", desc: "Toasted sourdough, pickled cucumber, chives.", tags: [] }
-  ]},
-  { course: "Mains", note: "Saturday dinner", dishes: [
-    { name: "Herb-crusted lamb", desc: "Garlic potatoes, green beans and rosemary jus.", tags: ["gf"] },
-    { name: "Wild mushroom risotto", desc: "Parmesan, thyme and a little lemon zest.", tags: ["v","gf"] },
-    { name: "Spiced chickpea tagine", desc: "Apricots, almonds and herbed couscous.", tags: ["vg"] }
-  ]},
-  { course: "Desserts", note: "Saturday dinner", dishes: [
-    { name: "Strawberry pavlova", desc: "Crisp meringue, whipped cream and macerated strawberries.", tags: ["v","gf"] },
-    { name: "Dark chocolate pot", desc: "Sea salt and olive oil.", tags: ["vg","gf"] }
-  ]},
-  { course: "Sunday brunch", note: "Sunday morning", dishes: [
-    { name: "Pastry basket", desc: "Croissants, pains au chocolat, jams and butter.", tags: ["v"] },
-    { name: "Eggs your way", desc: "Scrambled, poached or in an omelette with herbs.", tags: ["v","gf"] },
-    { name: "Fruit and yoghurt bar", desc: "Seasonal fruit, granola and honey.", tags: ["v"] }
-  ]}
-];
-var TAGS = { v: "Vegetarian", vg: "Vegan", gf: "Gluten-free" };
+    /* =========================================================
+       Rendering
+       ========================================================= */
+    function el(tag, attrs, html) {
+      var n = document.createElement(tag);
+      if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (html != null) n.innerHTML = html;
+      return n;
+    }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
 
-var HOTELS = [
-  { name: "Hôtel de la Prairie", desc: "Charming 3-star hotel with a garden terrace and breakfast included.", dist: "5 min from the venue", price: "From €95 / night", color: "#ffe66d", link: "#" },
-  { name: "Auberge du Moulin", desc: "A converted mill with 18 rooms, a restaurant and free parking.", dist: "10 min from the venue", price: "From €120 / night", color: "#ff9f45", link: "#" },
-  { name: "Le Petit Relais", desc: "Simple, friendly and good value, ideal for small groups.", dist: "15 min from the venue", price: "From €70 / night", color: "#4d96ff", link: "#" },
-  { name: "Grand Hôtel du Centre", desc: "4-star comfort in town with a spa. We can arrange a shuttle.", dist: "25 min from the venue", price: "From €150 / night", color: "#2d3142", link: "#" }
-];
+    /* Location */
+    (function () {
+      var q = encodeURIComponent(CONFIG.venueAddress);
+      document.getElementById("addr-text").innerHTML = esc(CONFIG.venueName) + "<br>" + esc(CONFIG.venueAddress);
+      document.getElementById("map-frame").src = "https://www.google.com/maps?q=" + q + "&output=embed";
+      document.getElementById("map-open").href = "https://www.google.com/maps/search/?api=1&query=" + q;
+      document.getElementById("map-route").href = "https://www.google.com/maps/dir/?api=1&destination=" + q;
+    })();
 
-var TIMETABLE = {
-  "Friday 12 June": [
-    { t: "16:00", title: "Arrival and check-in", desc: "Pick up your welcome pack at the main desk.", c: "#ffe66d" },
-    { t: "18:30", title: "Welcome drinks", desc: "On the terrace, with light snacks.", c: "#ff9f45" },
-    { t: "20:00", title: "Informal supper", desc: "Long tables in the barn. Come as you are.", c: "#4d96ff" }
-  ],
-  "Saturday 13 June": [
-    { t: "09:00", title: "Breakfast", desc: "Served in the garden room until 10:30.", c: "#ffe66d" },
-    { t: "11:00", title: "Garden games", desc: "Pétanque, croquet and a treasure hunt.", c: "#ff9f45" },
-    { t: "13:00", title: "Picnic lunch", desc: "On the lawn, weather permitting.", c: "#4d96ff" },
-    { t: "16:00", title: "Ceremony", desc: "Please be seated by 15:45.", c: "#ff9f45" },
-    { t: "19:00", title: "Dinner", desc: "Three courses, followed by speeches.", c: "#ffe66d" },
-    { t: "21:30", title: "Dancing", desc: "Live band, then DJ until late.", c: "#4d96ff" }
-  ],
-  "Sunday 14 June": [
-    { t: "10:00", title: "Brunch", desc: "Pastries, eggs and fruit.", c: "#ffe66d" },
-    { t: "12:00", title: "Farewell walk", desc: "A gentle loop around the lake.", c: "#4d96ff" },
-    { t: "14:00", title: "Goodbyes", desc: "Safe travels, and see you soon.", c: "#ff9f45" }
-  ]
-};
+    /* Menu */
+    (function () {
+      var host = document.getElementById("courses");
+      MENU.forEach(function (c) {
+        var dishes = c.dishes.map(function (d) {
+          var tags = d.tags.map(function (t) { return '<span class="tag ' + t + '">' + TAGS[t] + "</span>"; }).join("");
+          return '<div class="dish"><h4>' + esc(d.name) + tags + "</h4><p>" + esc(d.desc) + "</p></div>";
+        }).join("");
+        host.appendChild(el("div", { "class": "course" }, "<h3>" + esc(c.course) + "<small>" + esc(c.note) + "</small></h3><div class='dishes'>" + dishes + "</div>"));
+      });
+    })();
 
-/* =========================================================
-   Rendering
-   ========================================================= */
-function el(tag, attrs, html) {
-  var n = document.createElement(tag);
-  if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
-  if (html != null) n.innerHTML = html;
-  return n;
-}
-function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]; }); }
+    /* Car-sharing form */
+    (function () {
+      var box = document.getElementById("form-box");
+      var open = document.getElementById("form-open");
+      if (CONFIG.formEmbedUrl) {
+        var f = el("iframe", { title: "Car-sharing form", loading: "lazy", src: CONFIG.formEmbedUrl });
+        f.textContent = "Loading…";
+        box.appendChild(f);
+        open.href = CONFIG.formShareUrl || CONFIG.formEmbedUrl.replace("?embedded=true", "");
+      } else {
+        box.classList.remove("form");
+        box.appendChild(el("div", { "class": "placeholder" },
+          "<h3>Your Google Form will appear here</h3><p>Create a form in Google Forms, choose Send, open the “&lt;&gt;” tab and copy the link inside <code>src=\"…\"</code>. Paste it into <code>formEmbedUrl</code> at the top of the script.</p>"));
+        open.style.display = "none";
+      }
+    })();
 
-/* Location */
-(function () {
-  var q = encodeURIComponent(CONFIG.venueAddress);
-  document.getElementById("addr-text").innerHTML = esc(CONFIG.venueName) + "<br>" + esc(CONFIG.venueAddress);
-  document.getElementById("map-frame").src = "https://www.google.com/maps?q=" + q + "&output=embed";
-  document.getElementById("map-open").href = "https://www.google.com/maps/search/?api=1&query=" + q;
-  document.getElementById("map-route").href = "https://www.google.com/maps/dir/?api=1&destination=" + q;
-})();
+    /* Hotels */
+    (function () {
+      var host = document.getElementById("hotels");
+      HOTELS.forEach(function (h) {
+        host.appendChild(el("article", { "class": "hotel" },
+          '<div class="band" style="background:' + h.color + '"></div><div class="inner"><h3>' + esc(h.name) + "</h3><p>" + esc(h.desc) +
+          '</p><div class="meta"><span>' + esc(h.dist) + "</span><span>" + esc(h.price) + '</span></div><a class="btn" href="' + esc(h.link) + '" target="_blank" rel="noopener">Check availability</a></div>'));
+      });
+    })();
 
-/* Menu */
-(function () {
-  var host = document.getElementById("courses");
-  MENU.forEach(function (c) {
-    var dishes = c.dishes.map(function (d) {
-      var tags = d.tags.map(function (t) { return '<span class="tag ' + t + '">' + TAGS[t] + "</span>"; }).join("");
-      return '<div class="dish"><h4>' + esc(d.name) + tags + "</h4><p>" + esc(d.desc) + "</p></div>";
-    }).join("");
-    host.appendChild(el("div", { "class": "course" }, "<h3>" + esc(c.course) + "<small>" + esc(c.note) + "</small></h3><div class='dishes'>" + dishes + "</div>"));
-  });
-})();
+    /* Timetable */
+    (function () {
+      var days = Object.keys(TIMETABLE);
+      var dayHost = document.getElementById("days");
+      var list = document.getElementById("timeline");
+      function show(day) {
+        list.innerHTML = "";
+        TIMETABLE[day].forEach(function (s) {
+          var li = el("li", { "class": "slot" }, "<time>" + esc(s.t) + "</time><div><h3>" + esc(s.title) + "</h3><p>" + esc(s.desc) + "</p></div>");
+          li.style.setProperty("--c", s.c);
+          list.appendChild(li);
+        });
+        Array.prototype.forEach.call(dayHost.children, function (b) { b.setAttribute("aria-pressed", b.textContent === day ? "true" : "false"); });
+      }
+      days.forEach(function (d) {
+        var b = el("button", { "class": "day-btn", type: "button" }, esc(d));
+        b.addEventListener("click", function () { show(d); });
+        dayHost.appendChild(b);
+      });
+      show(days[0]);
+    })();
 
-/* Car-sharing form */
-(function () {
-  var box = document.getElementById("form-box");
-  var open = document.getElementById("form-open");
-  if (CONFIG.formEmbedUrl) {
-    var f = el("iframe", { title: "Car-sharing form", loading: "lazy", src: CONFIG.formEmbedUrl });
-    f.textContent = "Loading…";
-    box.appendChild(f);
-    open.href = CONFIG.formShareUrl || CONFIG.formEmbedUrl.replace("?embedded=true", "");
-  } else {
-    box.classList.remove("form");
-    box.appendChild(el("div", { "class": "placeholder" },
-      "<h3>Your Google Form will appear here</h3><p>Create a form in Google Forms, choose Send, open the “&lt;&gt;” tab and copy the link inside <code>src=\"…\"</code>. Paste it into <code>formEmbedUrl</code> at the top of the script.</p>"));
-    open.style.display = "none";
-  }
-})();
-
-/* Hotels */
-(function () {
-  var host = document.getElementById("hotels");
-  HOTELS.forEach(function (h) {
-    host.appendChild(el("article", { "class": "hotel" },
-      '<div class="band" style="background:' + h.color + '"></div><div class="inner"><h3>' + esc(h.name) + "</h3><p>" + esc(h.desc) +
-      '</p><div class="meta"><span>' + esc(h.dist) + "</span><span>" + esc(h.price) + '</span></div><a class="btn" href="' + esc(h.link) + '" target="_blank" rel="noopener">Check availability</a></div>'));
-  });
-})();
-
-/* Timetable */
-(function () {
-  var days = Object.keys(TIMETABLE);
-  var dayHost = document.getElementById("days");
-  var list = document.getElementById("timeline");
-  function show(day) {
-    list.innerHTML = "";
-    TIMETABLE[day].forEach(function (s) {
-      var li = el("li", { "class": "slot" }, "<time>" + esc(s.t) + "</time><div><h3>" + esc(s.title) + "</h3><p>" + esc(s.desc) + "</p></div>");
-      li.style.setProperty("--c", s.c);
-      list.appendChild(li);
-    });
-    Array.prototype.forEach.call(dayHost.children, function (b) { b.setAttribute("aria-pressed", b.textContent === day ? "true" : "false"); });
-  }
-  days.forEach(function (d) {
-    var b = el("button", { "class": "day-btn", type: "button" }, esc(d));
-    b.addEventListener("click", function () { show(d); });
-    dayHost.appendChild(b);
-  });
-  show(days[0]);
-})();
-
-/* Tab navigation (hash-based so each tab can be linked) */
-(function () {
-  var views = ["home", "location", "menu", "carsharing", "hotels", "timetable"];
-  function go(name, push) {
-    if (views.indexOf(name) === -1) name = "home";
-    views.forEach(function (v) {
-      document.getElementById("view-" + v).classList.toggle("active", v === name);
-    });
-    Array.prototype.forEach.call(document.querySelectorAll("#tabs a"), function (a) {
-      if (a.getAttribute("href") === "#" + name) a.setAttribute("aria-current", "page");
-      else a.removeAttribute("aria-current");
-    });
-    var current = document.querySelector('#tabs a[aria-current="page"]');
-    if (current && current.scrollIntoView) current.scrollIntoView({ block: "nearest", inline: "center" });
-    window.scrollTo(0, 0);
-    if (push) { try { history.replaceState(null, "", "#" + name); } catch (e) {} }
-  }
-  Array.prototype.forEach.call(document.querySelectorAll("[data-link]"), function (a) {
-    a.addEventListener("click", function (e) {
-      e.preventDefault();
-      go(a.getAttribute("href").slice(1), true);
-    });
-  });
-  window.addEventListener("hashchange", function () { go(location.hash.slice(1), false); });
-  go(location.hash.slice(1), false);
-})();
-</script>
+    /* Tab navigation (hash-based so each tab can be linked) */
+    (function () {
+      var views = ["home", "location", "menu", "carsharing", "hotels", "timetable"];
+      function go(name, push) {
+        if (views.indexOf(name) === -1) name = "home";
+        views.forEach(function (v) {
+          document.getElementById("view-" + v).classList.toggle("active", v === name);
+        });
+        Array.prototype.forEach.call(document.querySelectorAll("#tabs a"), function (a) {
+          if (a.getAttribute("href") === "#" + name) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
+        });
+        var current = document.querySelector('#tabs a[aria-current="page"]');
+        if (current && current.scrollIntoView) current.scrollIntoView({ block: "nearest", inline: "center" });
+        window.scrollTo(0, 0);
+        if (push) { try { history.replaceState(null, "", "#" + name); } catch (e) { } }
+      }
+      Array.prototype.forEach.call(document.querySelectorAll("[data-link]"), function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          go(a.getAttribute("href").slice(1), true);
+        });
+      });
+      window.addEventListener("hashchange", function () { go(location.hash.slice(1), false); });
+      go(location.hash.slice(1), false);
+    })();
+  </script>
 </body>
+
 </html>
