@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mariage Rémi & Chloé</title>
@@ -20,6 +21,7 @@
       --blue: #4F76C7;
       --navy: #16181f;
       --cream: #fffaf0;
+      --light-yellow: #fff1d6;
       --green: #649182;
 
       --bg: var(--yellow);
@@ -211,7 +213,7 @@
     }
 
     .other-page {
-      background-color: var(--cream);
+      background-color: var(--light-yellow);
     }
 
     /* ---------- Home ---------- */
@@ -245,12 +247,12 @@
       grid-template-columns: repeat(3, 1fr);
       gap: clamp(10px, 2vw, 24px);
       align-items: end;
+      margin-bottom: 30px;
     }
 
     .photo {
       margin: 0;
       overflow: hidden;
-      aspect-ratio: 3 / 4;
       /*background: var(--surface);*/
     }
 
@@ -264,7 +266,7 @@
 
     .photo:nth-child(1) {
       /*border-radius: 999px 999px 18px 18px;*/
-      scale: 70%;
+      scale: 100%;
     }
 
     .photo:nth-child(2) {
@@ -276,7 +278,7 @@
 
     .photo:nth-child(3) {
       /*border-radius: 999px 999px 18px 18px;*/
-      scale: 70%;
+      scale: 100%;
     }
 
     .facts {
@@ -775,10 +777,97 @@
       margin: 0 0 22px;
       color: var(--muted);
     }
+
+
+    /* Password gate */
+    .gate {
+      display: none;
+    }
+
+    body.locked .gate {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 24px;
+      background: var(--navy);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    body.locked>header,
+    body.locked>main,
+    body.locked>footer {
+      display: none;
+    }
+
+    body.locked::before {
+      display: none;
+    }
+
+    .gate-card {
+      width: min(100%, 420px);
+    }
+
+    .gate-card h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+      color: var(--yellow);
+      margin-bottom: 12px;
+    }
+
+    .gate-card p {
+      margin: 0 auto 24px;
+      color: var(--cream);
+      opacity: .85;
+    }
+
+    .gate-card input {
+      width: 100%;
+      font: inherit;
+      padding: 14px 18px;
+      border-radius: 999px;
+      border: 3px solid var(--cream);
+      background: transparent;
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .gate-card input::placeholder {
+      color: var(--cream);
+      opacity: .6;
+    }
+
+    .gate-card button {
+      margin-top: 14px;
+      font: inherit;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: 2px solid var(--cream);
+      background: var(--orange);
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .gate-error {
+      min-height: 1.5em;
+      margin: 14px 0 0 !important;
+      color: var(--yellow) !important;
+      font-weight: 700;
+    }
   </style>
 </head>
 
-<body>
+<body class="locked">
+  <div class="gate" id="gate">
+    <form class="gate-card" id="gate-form" autocomplete="off">
+      <h1>Mariage Chloé & Rémi</h1>
+      <p>Ce site est privé. Entrez le mot de passe indiqué sur votre invitation.</p>
+      <input type="password" id="gate-input" placeholder="Mot de passe" aria-label="Password" autofocus>
+      <button type="submit">Entrer</button>
+      <p class="gate-error" id="gate-error" role="alert"></p>
+    </form>
+  </div>
+
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#home" data-link>Mariage Chloé & Rémi</a>
@@ -1202,6 +1291,35 @@
       });
       window.addEventListener("hashchange", function () { go(location.hash.slice(1), false); });
       go(location.hash.slice(1), false);
+    })();
+    /* Password gate */
+    (function () {
+      var PASSWORD_HASH = "46246dafee2652ad13ba3ccaf1f32d41aefaf5354f63c820ca40c5b36920189e";
+      var KEY = "event-unlocked";
+
+      function sha256(text) {
+        return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
+          return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+            return b.toString(16).padStart(2, "0");
+          }).join("");
+        });
+      }
+      function unlock(remember) {
+        document.body.classList.remove("locked");
+        if (remember) { try { localStorage.setItem(KEY, PASSWORD_HASH); } catch (e) { } }
+      }
+
+      try { if (localStorage.getItem(KEY) === PASSWORD_HASH) { unlock(false); return; } } catch (e) { }
+
+      document.getElementById("gate-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var input = document.getElementById("gate-input");
+        var error = document.getElementById("gate-error");
+        sha256(input.value.trim()).then(function (h) {
+          if (h === PASSWORD_HASH) { unlock(true); }
+          else { error.textContent = "Mauvais mot de passe, veuillez réessayer."; input.select(); }
+        });
+      });
     })();
   </script>
 </body>
