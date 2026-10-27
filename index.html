@@ -10,24 +10,28 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap"
     rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Capriola&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --yellow: #ffe66d;
-      --orange: #ff9f45;
-      --blue: #4d96ff;
-      --navy: #2d3142;
+      --yellow: #E6991D;
+      --orange: #DD591C;
+      --blue: #4F76C7;
+      --navy: #16181f;
       --cream: #fffaf0;
+      --green: #649182;
 
-      --bg: var(--cream);
+      --bg: var(--yellow);
       --surface: #ffffff;
       --text: var(--navy);
-      --muted: #5d6279;
+      --muted: #2b2a2a;
       --line: rgba(45, 49, 66, 0.14);
       --nav-bg: var(--navy);
       --nav-text: var(--cream);
       --link: #1f63d1;
 
-      --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
+      --display: "Comic Neue", "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
       --body: "DM Sans", "Segoe UI", Helvetica, Arial, sans-serif;
 
       box-sizing: border-box;
@@ -35,26 +39,10 @@
       padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #23263a;
-        --surface: #2d3142;
-        --text: var(--cream);
-        --muted: #b9bccb;
-        --line: rgba(255, 250, 240, 0.16);
-        --nav-bg: #1a1c2b;
-        --link: #8bb8ff;
-      }
-    }
-
-    :root[data-theme="dark"] {
-      --bg: #23263a;
-      --surface: #2d3142;
-      --text: var(--cream);
-      --muted: #b9bccb;
-      --line: rgba(255, 250, 240, 0.16);
-      --nav-bg: #1a1c2b;
-      --link: #8bb8ff;
+    .comic-neue-regular {
+      font-family: "Comic Neue", cursive;
+      font-weight: 400;
+      font-style: normal;
     }
 
     html {
@@ -222,15 +210,18 @@
       padding-bottom: 80px;
     }
 
-    /* ---------- Home ---------- */
-    .hero {
-      padding: 56px 0 24px;
+    .other-page {
+      background-color: var(--cream);
     }
 
-    .hero h1 {
-      font-size: clamp(2.8rem, 9vw, 6.4rem);
+    /* ---------- Home ---------- */
+    .hero {
+      padding: 0 0 24px;
+    }
+
+    .hero h2 {
+      font-size: clamp(3rem, 3vw, 6.4rem);
       font-weight: 800;
-      max-width: 14ch;
     }
 
     .hero h1 .sun {
@@ -253,7 +244,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: clamp(10px, 2vw, 24px);
-      margin: 44px 0 0;
       align-items: end;
     }
 
@@ -261,7 +251,7 @@
       margin: 0;
       overflow: hidden;
       aspect-ratio: 3 / 4;
-      background: var(--surface);
+      /*background: var(--surface);*/
     }
 
     .photo svg,
@@ -273,23 +263,27 @@
     }
 
     .photo:nth-child(1) {
-      border-radius: 999px 999px 18px 18px;
+      /*border-radius: 999px 999px 18px 18px;*/
+      scale: 70%;
     }
 
     .photo:nth-child(2) {
-      border-radius: 18px;
-      aspect-ratio: 3 / 3.6;
+      /*border-radius: 18px;*/
+      /*aspect-ratio: 3 / 3.6;*/
+      scale: 120%;
+
     }
 
     .photo:nth-child(3) {
-      border-radius: 999px 18px 999px 18px;
+      /*border-radius: 999px 999px 18px 18px;*/
+      scale: 70%;
     }
 
     .facts {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      margin: 56px 0 0;
+      margin: 56px 0 30px;
       padding: 28px 0 0;
       border-top: 2px solid var(--text);
     }
@@ -312,7 +306,6 @@
     }
 
     .intro {
-      margin-top: 56px;
       font-size: 1.2rem;
     }
 
@@ -337,7 +330,7 @@
 
     .btn {
       display: inline-block;
-      background: var(--orange);
+      background: var(--yellow);
       color: var(--navy);
       font-weight: 700;
       text-decoration: none;
@@ -607,7 +600,7 @@
       color: var(--cream);
     }
 
-    :root[data-theme="dark"] .day-btn[aria-pressed="true"] {
+    /*    :root[data-theme="dark"] .day-btn[aria-pressed="true"] {
       background: var(--yellow);
       color: var(--navy);
       border-color: var(--yellow);
@@ -620,7 +613,7 @@
         border-color: var(--yellow);
       }
     }
-
+*/
     .timeline {
       list-style: none;
       margin: 0;
@@ -730,6 +723,58 @@
         transition: none !important;
       }
     }
+
+    /* FAQ */
+    .faq {
+      max-width: 760px;
+      border-top: 2px solid var(--text);
+    }
+
+    .faq details {
+      border-bottom: 2px solid var(--text);
+    }
+
+    .faq summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      flex: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: transform .2s, background .2s;
+    }
+
+    .faq details[open] summary::after {
+      content: "–";
+      background: var(--orange);
+    }
+
+    .faq details p {
+      margin: 0 0 22px;
+      color: var(--muted);
+    }
   </style>
 </head>
 
@@ -741,6 +786,7 @@
         <ul class="tabs" id="tabs">
           <li><a href="#home" data-link>Accueil</a></li>
           <li><a href="#location" data-link>Lieux</a></li>
+          <li><a href="#faq" data-link>FAQ</a></li>
           <!-- <li><a href="#menu" data-link>Menu</a></li> -->
           <!-- <li><a href="#carsharing" data-link>Covoit'</a></li> -->
           <!-- <li><a href="#hotels" data-link>Logements</a></li> -->
@@ -754,80 +800,32 @@
 
     <!-- ===== Accueil ===== -->
     <section class="view" id="view-home" aria-label="Accueil">
+      <!-- Replace these three illustrations with your own photos (see notes) -->
+      <div class="photos" id="photos">
+        <figure class="photo">
+          <img src="IMG_5461.gif" alt="Describe the first GIF" loading="eager">
+        </figure>
+        <figure class="photo">
+          <img src="IMG_5457.gif" alt="Describe the second GIF" loading="eager">
+        </figure>
+        <figure class="photo">
+          <img src="IMG_5462.gif" alt="Describe the third GIF" loading="eager">
+        </figure>
+      </div>
+
       <div class="wrap">
         <div class="hero">
-          <h1>Nous allons nous <span class="sun">marier</span>, rejoignez nous !</h1>
-          <p class="hero-sub">Rendez-vous le 02 Octobre 2027 pour notre mariage ! Ce site contient toutes les
-            informations nécéssaires pour planifier votre venue !</p>
+          <h2>Nous allons nous marier ! Venez fêter ça avec nous.</h2>
         </div>
 
-        <!-- Replace these three illustrations with your own photos (see notes) -->
-        <div class="photos" id="photos">
-          <figure class="photo">
-            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img"
-              aria-label="Illustration of a sun over green hills">
-              <rect width="300" height="400" fill="#ffe66d" />
-              <circle cx="150" cy="140" r="64" fill="#ff9f45" />
-              <g stroke="#ff9f45" stroke-width="8" stroke-linecap="round">
-                <path
-                  d="M150 40v-18M150 258v-18M50 140H32M268 140h-18M79 69L66 56M234 224l-13-13M221 69l13-13M66 224l13-13" />
-              </g>
-              <path d="M0 300 Q90 230 180 290 T300 270 V400 H0Z" fill="#4d96ff" />
-              <path d="M0 350 Q110 300 210 345 T300 330 V400 H0Z" fill="#2d3142" />
-            </svg>
-          </figure>
-          <figure class="photo">
-            <svg viewBox="0 0 300 360" preserveAspectRatio="xMidYMid slice" role="img"
-              aria-label="Illustration of string lights over a long table">
-              <rect width="300" height="360" fill="#4d96ff" />
-              <path d="M-10 60 Q75 130 150 70 T310 70" fill="none" stroke="#2d3142" stroke-width="4" />
-              <g>
-                <circle cx="38" cy="95" r="12" fill="#ffe66d" />
-                <circle cx="85" cy="112" r="12" fill="#ff9f45" />
-                <circle cx="135" cy="92" r="12" fill="#fffaf0" />
-                <circle cx="190" cy="82" r="12" fill="#ffe66d" />
-                <circle cx="240" cy="90" r="12" fill="#ff9f45" />
-                <circle cx="285" cy="76" r="12" fill="#fffaf0" />
-              </g>
-              <rect x="0" y="250" width="300" height="110" fill="#2d3142" />
-              <rect x="0" y="240" width="300" height="16" fill="#fffaf0" />
-              <g fill="#ffe66d">
-                <rect x="52" y="196" width="26" height="44" rx="6" />
-                <rect x="146" y="196" width="26" height="44" rx="6" />
-                <rect x="232" y="196" width="26" height="44" rx="6" />
-              </g>
-              <g fill="#ff9f45">
-                <circle cx="100" cy="226" r="14" />
-                <circle cx="196" cy="226" r="14" />
-              </g>
-            </svg>
-          </figure>
-          <figure class="photo">
-            <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img"
-              aria-label="Illustration of a bouquet of flowers">
-              <rect width="300" height="400" fill="#ff9f45" />
-              <g stroke="#2d3142" stroke-width="6" stroke-linecap="round" fill="none">
-                <path d="M150 380V220M150 330Q100 280 90 190M150 330Q200 270 215 170" />
-              </g>
-              <g>
-                <circle cx="150" cy="190" r="46" fill="#fffaf0" />
-                <circle cx="150" cy="190" r="18" fill="#ffe66d" />
-                <circle cx="90" cy="165" r="38" fill="#4d96ff" />
-                <circle cx="90" cy="165" r="14" fill="#ffe66d" />
-                <circle cx="215" cy="150" r="38" fill="#ffe66d" />
-                <circle cx="215" cy="150" r="14" fill="#2d3142" />
-              </g>
-              <path d="M95 380h110l-14-60H109Z" fill="#2d3142" />
-            </svg>
-          </figure>
-        </div>
+
 
         <p class="intro">Nous sommes très heureux de vous recevoir ! Utilisez les onglets ci-dessus pour trouver le
           lieu, consulter le menu, organiser un covoiturage, réserver une chambre et consulter le programme.</p>
 
         <div class="facts">
           <div class="fact">
-            <div class="swatch" style="background:var(--yellow)"></div>
+            <div class="swatch" style="background:var(--green)"></div>
             <h3>Quand ?</h3>
             <p>Du Samedi 2 au Dimanche 3 Octobre 2027</p>
           </div>
@@ -846,7 +844,7 @@
     </section>
 
     <!-- ===== LOCATION ===== -->
-    <section class="view" id="view-location" aria-label="Location">
+    <section class="view other-page" id="view-location" aria-label="Location">
       <div class="wrap">
         <div class="page-head">
           <h2>Lieu du mariage</h2>
@@ -875,7 +873,7 @@
           </div>
           <div class="row">
             <a class="btn" id="map-open" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-            <a class="btn ghost" id="map-route" target="_blank" rel="noopener">Démarrer un itinéraire</a>
+            <a class="btn" id="map-route" target="_blank" rel="noopener">Démarrer un itinéraire</a>
           </div>
           <div class="page-head">
             <h2>Mairie</h2>
@@ -959,13 +957,62 @@
       </div>
     </section>
 
+    <!-- ===== FAQ ===== -->
+    <section class="view other-page" id="view-faq" aria-label="FAQ">
+      <div class="wrap">
+        <div class="page-head">
+          <h2>FAQ</h2>
+          <p>Vous ne trouvez pas votre réponse ici ? Contactez nous !</p>
+        </div>
+        <div class="page-body">
+          <div class="faq">
+            <details>
+              <summary>Y'a t'il un dress code ?</summary>
+              <p>Pas vraiment de dress code, mais il est recommandé de venir avec de la couleur car notre mariage sera
+                coloré et festif ! Le lieu sera gazonné et pavé, attention aux chevilles pour ceux qui viennent en
+                talons !</p>
+            </details>
+            <details>
+              <summary>Puis-je venir avec mes enfants ?</summary>
+              <p>Oui, les enfants sont les bienvenus. Merci de nous l'indiquer dans le formulaire pour leur préparer un
+                menu spécial pour le diner.</p>
+            </details>
+            <details>
+              <summary>Y a-t-il un parking sur le lieu de réception ?</summary>
+              <p>Oui, le parking est gratuit sur place.</p>
+            </details>
+            <details>
+              <summary>Et s’il pleut ?</summary>
+              <p>Tout est prévu pour se replier à l’intérieur, donc la fête est maintenue quoi qu’il arrive, la
+                cérémonie et le vin d'honneur seront faits dans une salle intérieure.</p>
+            </details>
+            <details>
+              <summary>Quelles sont les cérémonies prévues ?</summary>
+              <p>Pour le mariage civil, ce sera sur invitation uniquement. Pour la cérémonie laïque, tout le monde est
+                convié pour célébrer notre union le Samedi à 15h.</p>
+            </details>
+            <details>
+              <summary>A quelle heure arriver pour la cérémonie laïque ?</summary>
+              <p>Merci de bien vouloir arriver vers 14h45 pour que nous puissions commencer la cérémonie à l'heure à
+                15h.</p>
+            </details>
+            <details>
+              <summary>Et si j'ai une allergie ou un régime alimentaire spécifique ?</summary>
+              <p>Merci de nous le signaler lors de votre réponse, le traiteur préparera un plat adapté pour vous.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
     <div class="wrap">
       <p>Mariage Chloé & Rémi · 2 & 3 Octobre 2027</p>
       <div class="dots" aria-hidden="true">
-        <i style="background:#ffe66d"></i><i style="background:#ff9f45"></i><i style="background:#4d96ff"></i>
+        <i style="background:var(--green)"></i><i style="background:var(--orange)"></i><i
+          style="background:var(--blue)"></i>
       </div>
     </div>
   </footer>
@@ -1132,7 +1179,7 @@
 
     /* Tab navigation (hash-based so each tab can be linked) */
     (function () {
-      var views = ["home", "location", "menu", "carsharing", "hotels", "timetable"];
+      var views = ["home", "location", "faq", "menu", "carsharing", "hotels", "timetable"];
       function go(name, push) {
         if (views.indexOf(name) === -1) name = "home";
         views.forEach(function (v) {
