@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta name="robots" content="noindex, nofollow">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Mariage Rémi & Chloé</title>
+  <title data-i18n="page.title">Mariage Rémi & Chloé</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -115,7 +115,7 @@
       padding: 0 20px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
 
     .brand {
@@ -165,17 +165,100 @@
       font-weight: 700;
     }
 
+    /* ---------- Language Switcher ---------- */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 250, 240, 0.12);
+      border: 1px solid rgba(255, 250, 240, 0.22);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--nav-text);
+      font-family: var(--body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      line-height: 1;
+      transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 250, 240, 0.2);
+      color: var(--yellow);
+    }
+
+    .lang-btn.active {
+      background: var(--yellow);
+      color: var(--navy);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    .flag-icon {
+      width: 19px;
+      height: 13px;
+      border-radius: 2px;
+      overflow: hidden;
+      display: block;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
+    }
+
+    .gate-lang {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 10;
+    }
+
     @media (max-width: 760px) {
       .brand {
         display: none;
       }
 
       .topbar-inner {
-        padding: 0 8px;
+        padding: 0 10px;
+        gap: 8px;
+        justify-content: space-between;
+      }
+
+      nav[aria-label="Main"] {
+        flex: 1;
+        min-width: 0;
       }
 
       .tabs {
         margin: 0;
+      }
+
+      .lang-btn {
+        padding: 5px 8px;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+
+      .flag-icon {
+        width: 17px;
+        height: 12px;
+      }
+
+      .gate-lang {
+        top: 14px;
+        right: 14px;
       }
     }
 
@@ -253,7 +336,6 @@
     .photo {
       margin: 0;
       overflow: hidden;
-      /*background: var(--surface);*/
     }
 
     .photo svg,
@@ -265,19 +347,14 @@
     }
 
     .photo:nth-child(1) {
-      /*border-radius: 999px 999px 18px 18px;*/
       scale: 100%;
     }
 
     .photo:nth-child(2) {
-      /*border-radius: 18px;*/
-      /*aspect-ratio: 3 / 3.6;*/
       scale: 120%;
-
     }
 
     .photo:nth-child(3) {
-      /*border-radius: 999px 999px 18px 18px;*/
       scale: 100%;
     }
 
@@ -500,7 +577,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--blue);
+      background: var(--yellow);
       color: #fff;
       font-family: var(--display);
       font-weight: 800;
@@ -602,20 +679,6 @@
       color: var(--cream);
     }
 
-    /*    :root[data-theme="dark"] .day-btn[aria-pressed="true"] {
-      background: var(--yellow);
-      color: var(--navy);
-      border-color: var(--yellow);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) .day-btn[aria-pressed="true"] {
-        background: var(--yellow);
-        color: var(--navy);
-        border-color: var(--yellow);
-      }
-    }
-*/
     .timeline {
       list-style: none;
       margin: 0;
@@ -778,13 +841,13 @@
       color: var(--muted);
     }
 
-
     /* Password gate */
     .gate {
       display: none;
     }
 
     body.locked .gate {
+      position: relative;
       display: grid;
       place-items: center;
       min-height: 100vh;
@@ -859,101 +922,142 @@
 
 <body class="locked">
   <div class="gate" id="gate">
+    <div class="gate-lang">
+      <div class="lang-switcher" role="group" aria-label="Langue / Language">
+        <button type="button" class="lang-btn active" data-lang="fr" aria-pressed="true" title="Français" aria-label="Passer en Français">
+          <svg class="flag-icon" viewBox="0 0 3 2" aria-hidden="true" focusable="false">
+            <rect width="1" height="2" fill="#002654"/>
+            <rect x="1" width="1" height="2" fill="#FFFFFF"/>
+            <rect x="2" width="1" height="2" fill="#CE1126"/>
+          </svg>
+          <span>FR</span>
+        </button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" title="English" aria-label="Switch to English">
+          <svg class="flag-icon" viewBox="0 0 60 30" aria-hidden="true" focusable="false">
+            <rect width="60" height="30" fill="#012169"/>
+            <path d="M0 0 L60 30 M60 0 L0 30" stroke="#fff" stroke-width="6"/>
+            <path d="M0 0 L30 15 M60 30 L30 15" stroke="#C8102E" stroke-width="2"/>
+            <path d="M60 0 L30 15 M0 30 L30 15" stroke="#C8102E" stroke-width="2"/>
+            <path d="M30 0 v30 M0 15 h60" stroke="#fff" stroke-width="10"/>
+            <path d="M30 0 v30 M0 15 h60" stroke="#C8102E" stroke-width="6"/>
+          </svg>
+          <span>EN</span>
+        </button>
+      </div>
+    </div>
     <form class="gate-card" id="gate-form" autocomplete="off">
-      <h1>Mariage Chloé & Rémi</h1>
-      <p>Ce site est privé. Entrez le mot de passe indiqué sur votre invitation.</p>
-      <input type="password" id="gate-input" placeholder="Mot de passe" aria-label="Password" autofocus>
-      <button type="submit">Entrer</button>
+      <h1 data-i18n="gate.title">Mariage Chloé & Rémi</h1>
+      <p data-i18n="gate.desc">Ce site est privé. Entrez le mot de passe indiqué sur votre invitation.</p>
+      <input type="password" id="gate-input" placeholder="Mot de passe" aria-label="Password" autofocus data-i18n-placeholder="gate.placeholder">
+      <button type="submit" data-i18n="gate.btn">Entrer</button>
       <p class="gate-error" id="gate-error" role="alert"></p>
     </form>
   </div>
 
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#home" data-link>Mariage Chloé & Rémi</a>
+      <a class="brand" href="#home" data-link data-i18n="nav.brand">Mariage Chloé & Rémi</a>
       <nav aria-label="Main">
         <ul class="tabs" id="tabs">
-          <li><a href="#home" data-link>Accueil</a></li>
-          <li><a href="#location" data-link>Lieux</a></li>
-          <li><a href="#faq" data-link>FAQ</a></li>
-          <!-- <li><a href="#menu" data-link>Menu</a></li> -->
-          <!-- <li><a href="#carsharing" data-link>Covoit'</a></li> -->
-          <!-- <li><a href="#hotels" data-link>Logements</a></li> -->
-          <!-- <li><a href="#timetable" data-link>Programme</a></li> -->
+          <li><a href="#home" data-link data-i18n="tabs.home">Accueil</a></li>
+          <li><a href="#location" data-link data-i18n="tabs.location">Lieux</a></li>
+          <li><a href="#faq" data-link data-i18n="tabs.faq">FAQ</a></li>
+          <!-- <li><a href="#menu" data-link data-i18n="tabs.menu">Menu</a></li> -->
+          <!-- <li><a href="#carsharing" data-link data-i18n="tabs.carsharing">Covoit'</a></li> -->
+          <!-- <li><a href="#hotels" data-link data-i18n="tabs.hotels">Logements</a></li> -->
+          <!-- <li><a href="#timetable" data-link data-i18n="tabs.timetable">Programme</a></li> -->
         </ul>
       </nav>
+      <div class="lang-switcher" role="group" aria-label="Langue / Language">
+        <button type="button" class="lang-btn active" data-lang="fr" aria-pressed="true" title="Français" aria-label="Passer en Français">
+          <svg class="flag-icon" viewBox="0 0 3 2" aria-hidden="true" focusable="false">
+            <rect width="1" height="2" fill="#002654"/>
+            <rect x="1" width="1" height="2" fill="#FFFFFF"/>
+            <rect x="2" width="1" height="2" fill="#CE1126"/>
+          </svg>
+          <span>FR</span>
+        </button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" title="English" aria-label="Switch to English">
+          <svg class="flag-icon" viewBox="0 0 60 30" aria-hidden="true" focusable="false">
+            <rect width="60" height="30" fill="#012169"/>
+            <path d="M0 0 L60 30 M60 0 L0 30" stroke="#fff" stroke-width="6"/>
+            <path d="M0 0 L30 15 M60 30 L30 15" stroke="#C8102E" stroke-width="2"/>
+            <path d="M60 0 L30 15 M0 30 L30 15" stroke="#C8102E" stroke-width="2"/>
+            <path d="M30 0 v30 M0 15 h60" stroke="#fff" stroke-width="10"/>
+            <path d="M30 0 v30 M0 15 h60" stroke="#C8102E" stroke-width="6"/>
+          </svg>
+          <span>EN</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
 
     <!-- ===== Accueil ===== -->
-    <section class="view" id="view-home" aria-label="Accueil">
+    <section class="view" id="view-home" aria-label="Accueil" data-i18n-aria-label="views.home">
       <!-- Replace these three illustrations with your own photos (see notes) -->
       <div class="photos" id="photos">
         <figure class="photo">
-          <img src="IMG_5461.gif" alt="Describe the first GIF" loading="eager">
+          <img src="IMG_5461.gif" alt="Mariage Chloé & Rémi" loading="eager">
         </figure>
         <figure class="photo">
-          <img src="IMG_5457.gif" alt="Describe the second GIF" loading="eager">
+          <img src="IMG_5457.gif" alt="Mariage Chloé & Rémi" loading="eager">
         </figure>
         <figure class="photo">
-          <img src="IMG_5462.gif" alt="Describe the third GIF" loading="eager">
+          <img src="IMG_5462.gif" alt="Mariage Chloé & Rémi" loading="eager">
         </figure>
       </div>
 
       <div class="wrap">
         <div class="hero">
-          <h2>Nous allons nous marier ! Venez fêter ça avec nous.</h2>
+          <h2 data-i18n="home.hero">Nous allons nous marier ! Venez fêter ça avec nous.</h2>
         </div>
 
-
-
-        <p class="intro">Nous sommes très heureux de vous recevoir ! Utilisez les onglets ci-dessus pour trouver le
-          lieu, une première FAQ, et plus tard confirmer votre venue, consulter le menu, organiser un covoiturage, trouver un hotel et consulter le programme.</p>
+        <p class="intro" data-i18n="home.intro">Nous sommes très heureux de vous recevoir ! Utilisez les onglets ci-dessus pour trouver le
+          lieu, consulter le menu, organiser un covoiturage, réserver une chambre et consulter le programme.</p>
 
         <div class="facts">
           <div class="fact">
             <div class="swatch" style="background:var(--green)"></div>
-            <h3>Quand ?</h3>
-            <p>Du Samedi 2 au Dimanche 3 Octobre 2027</p>
+            <h3 data-i18n="home.when_title">Quand ?</h3>
+            <p data-i18n="home.when_desc">Du Samedi 2 au Dimanche 3 Octobre 2027</p>
           </div>
           <div class="fact">
             <div class="swatch" style="background:var(--orange)"></div>
-            <h3>Où ?</h3>
-            <p>Domaine de Ronceval à Mouscron (Belgique), avec parking gratuit sur site !</p>
+            <h3 data-i18n="home.where_title">Où ?</h3>
+            <p data-i18n="home.where_desc">Domaine de Ronceval à Mouscron (Belgique), avec parking gratuit sur site !</p>
           </div>
           <div class="fact">
             <div class="swatch" style="background:var(--blue)"></div>
-            <h3>Répondez avant le</h3>
-            <p>Vendredi 31 Aout 2027, en utilisant le QR Code sur votre invitation !</p>
+            <h3 data-i18n="home.rsvp_title">Répondez avant le</h3>
+            <p data-i18n="home.rsvp_desc">Vendredi 31 Aout 2027, en utilisant le QR Code sur votre invitation !</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ===== LOCATION ===== -->
-    <section class="view other-page" id="view-location" aria-label="Location">
+    <section class="view other-page" id="view-location" aria-label="Lieu du mariage" data-i18n-aria-label="views.location">
       <div class="wrap">
         <div class="page-head">
-          <h2>Lieu du mariage</h2>
-          <p>La fête se déroule au Domaine de Ronceval en Belgique. Le stationnement est gratuit et l'entrée est
+          <h2 data-i18n="loc.title">Lieu du mariage</h2>
+          <p data-i18n="loc.desc">La fête se déroule au Domaine de Ronceval en Belgique. Le stationnement est gratuit et l'entrée est
             indiquée depuis la route principale.</p>
         </div>
         <div class="page-body">
           <div class="address-card">
             <div>
-              <h3>Adresse</h3>
+              <h3 data-i18n="loc.addr_title">Adresse</h3>
               <p id="addr-text"></p>
             </div>
             <div>
-              <h3>En voiture</h3>
-              <p>À environ 30 minutes du centre-ville de Lille. Suivez les panneaux après le rond-point.</p>
+              <h3 data-i18n="loc.car_title">En voiture</h3>
+              <p data-i18n="loc.car_desc">À environ 30 minutes du centre-ville de Lille. Suivez les panneaux après le rond-point.</p>
             </div>
             <div>
-              <h3>En train</h3>
-              <p>La gare la plus proche se trouve à 12 minutes en voiture.
-              </p>
+              <h3 data-i18n="loc.train_title">En train</h3>
+              <p data-i18n="loc.train_desc">La gare la plus proche se trouve à 12 minutes en voiture.</p>
             </div>
           </div>
           <div class="embed" id="map-box">
@@ -961,30 +1065,30 @@
               allowfullscreen></iframe>
           </div>
           <div class="row">
-            <a class="btn" id="map-open" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-            <a class="btn" id="map-route" target="_blank" rel="noopener">Démarrer un itinéraire</a>
+            <a class="btn" id="map-open" target="_blank" rel="noopener" data-i18n="loc.btn_maps">Ouvrir dans Google Maps</a>
+            <a class="btn" id="map-route" target="_blank" rel="noopener" data-i18n="loc.btn_route">Démarrer un itinéraire</a>
           </div>
           <div class="page-head">
-            <h2>Mairie</h2>
-            <p>La cérémonie civile se déroulera à la mairie de Lille. Place Augustin Laurent, 59800 Lille.</p>
+            <h2 data-i18n="loc.mairie_title">Mairie</h2>
+            <p data-i18n="loc.mairie_desc">La cérémonie civile se déroulera à la mairie de Lille. Place Augustin Laurent, 59800 Lille.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ===== MENU ===== -->
-    <section class="view" id="view-menu" aria-label="Menu">
+    <section class="view other-page" id="view-menu" aria-label="Menu" data-i18n-aria-label="views.menu">
       <div class="wrap">
         <div class="page-head">
-          <h2>Menu</h2>
-          <p>Un menu de saison à orientation locale, servi à table. Les tags montrent quels plats sont végétariens,
+          <h2 data-i18n="menu.title">Menu</h2>
+          <p data-i18n="menu.desc">Un menu de saison à orientation locale, servi à table. Les tags montrent quels plats sont végétariens,
             végétaliens ou sans
             gluten.</p>
         </div>
         <div class="page-body">
           <div class="courses" id="courses"></div>
           <div class="note">
-            <p><strong>Allergies ou régimes alimentaires?</strong> Indiquez-le dans votre réponse et nous préparerons
+            <p data-i18n-html="menu.note"><strong>Allergies ou régimes alimentaires ?</strong> Indiquez-le dans votre réponse et nous préparerons
               une alternative pour vous.</p>
           </div>
         </div>
@@ -992,26 +1096,25 @@
     </section>
 
     <!-- ===== CAR-SHARING ===== -->
-    <section class="view" id="view-carsharing" aria-label="Car-sharing">
+    <section class="view other-page" id="view-carsharing" aria-label="Covoiturage" data-i18n-aria-label="views.carsharing">
       <div class="wrap">
         <div class="page-head">
-          <h2>Covoiturage</h2>
-          <p>Offrez une place dans votre voiture ou demandez un transport.</p>
+          <h2 data-i18n="car.title">Covoiturage</h2>
+          <p data-i18n="car.desc">Offrez une place dans votre voiture ou demandez un transport.</p>
         </div>
         <div class="page-body">
           <div class="split">
             <ol class="steps">
-              <li><strong>Remplissez le formulaire</strong><span>Précisez si vous proposez ou si vous avez besoin de
+              <li><strong data-i18n="car.step1_strong">Remplissez le formulaire</strong><span data-i18n="car.step1_span">Précisez si vous proposez ou si vous avez besoin de
                   transport.</span></li>
-              <li><strong>Ajoutez votre ville de départ</strong><span>Indiquez le jour et l’heure approximative de votre
+              <li><strong data-i18n="car.step2_strong">Ajoutez votre ville de départ</strong><span data-i18n="car.step2_span">Indiquez le jour et l’heure approximative de votre
                   départ.</span></li>
-              <li><strong>Nous vous mettons en contact</strong><span>Nous vous enverrons les coordonnées des personnes
+              <li><strong data-i18n="car.step3_strong">Nous vous mettons en contact</strong><span data-i18n="car.step3_span">Nous vous enverrons les coordonnées des personnes
                   se trouvant sur votre trajet.</span></li>
             </ol>
             <div>
               <div class="embed form" id="form-box"></div>
-              <div class="row"><a class="btn ghost" id="form-open" target="_blank" rel="noopener">Open the form in a new
-                  tab</a></div>
+              <div class="row"><a class="btn ghost" id="form-open" target="_blank" rel="noopener" data-i18n="car.open_btn">Ouvrir le formulaire dans un nouvel onglet</a></div>
             </div>
           </div>
         </div>
@@ -1019,11 +1122,11 @@
     </section>
 
     <!-- ===== HOTELS ===== -->
-    <section class="view" id="view-hotels" aria-label="Hotels">
+    <section class="view other-page" id="view-hotels" aria-label="Hôtels" data-i18n-aria-label="views.hotels">
       <div class="wrap">
         <div class="page-head">
-          <h2>Hôtels</h2>
-          <p>Nous vous conseillons de réserver rapidement, car les chambres près du lieu de réception peuvent afficher
+          <h2 data-i18n="hotels.title">Hôtels</h2>
+          <p data-i18n="hotels.desc">Nous vous conseillons de réserver rapidement, car les chambres près du lieu de réception peuvent afficher
             complet.</p>
         </div>
         <div class="page-body">
@@ -1033,61 +1136,61 @@
     </section>
 
     <!-- ===== TIMETABLE ===== -->
-    <section class="view" id="view-timetable" aria-label="Timetable">
+    <section class="view other-page" id="view-timetable" aria-label="Programme" data-i18n-aria-label="views.timetable">
       <div class="wrap">
         <div class="page-head">
-          <h2>Programme</h2>
-          <p>Les horaires peuvent légèrement varier le jour J. Nous communiquerons les changements à l’accueil.</p>
+          <h2 data-i18n="time.title">Programme</h2>
+          <p data-i18n="time.desc">Les horaires peuvent légèrement varier le jour J. Nous communiquerons les changements à l’accueil.</p>
         </div>
         <div class="page-body">
-          <div class="days" id="days" role="group" aria-label="Choose a day"></div>
+          <div class="days" id="days" role="group" aria-label="Choisir un jour" data-i18n-aria-label="time.aria_label"></div>
           <ol class="timeline" id="timeline"></ol>
         </div>
       </div>
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section class="view other-page" id="view-faq" aria-label="FAQ">
+    <section class="view other-page" id="view-faq" aria-label="FAQ" data-i18n-aria-label="views.faq">
       <div class="wrap">
         <div class="page-head">
-          <h2>FAQ</h2>
-          <p>Vous ne trouvez pas votre réponse ici ? Contactez nous !</p>
+          <h2 data-i18n="faq.title">FAQ</h2>
+          <p data-i18n="faq.desc">Vous ne trouvez pas votre réponse ici ? Contactez nous !</p>
         </div>
         <div class="page-body">
           <div class="faq">
             <details>
-              <summary>Y'a t'il un dress code ?</summary>
-              <p>Pas vraiment de dress code, mais il est recommandé de venir avec de la couleur car notre mariage sera
+              <summary data-i18n="faq.q1">Y'a t'il un dress code ?</summary>
+              <p data-i18n="faq.a1">Pas vraiment de dress code, mais il est recommandé de venir avec de la couleur car notre mariage sera
                 coloré et festif ! Le lieu sera gazonné et pavé, attention aux chevilles pour ceux qui viennent en
                 talons !</p>
             </details>
             <details>
-              <summary>Puis-je venir avec mes enfants ?</summary>
-              <p>Oui, les enfants sont les bienvenus. Merci de nous l'indiquer dans le formulaire pour leur préparer un
+              <summary data-i18n="faq.q2">Puis-je venir avec mes enfants ?</summary>
+              <p data-i18n="faq.a2">Oui, les enfants sont les bienvenus. Merci de nous l'indiquer dans le formulaire pour leur préparer un
                 menu spécial pour le diner.</p>
             </details>
             <details>
-              <summary>Y a-t-il un parking sur le lieu de réception ?</summary>
-              <p>Oui, le parking est gratuit sur place.</p>
+              <summary data-i18n="faq.q3">Y a-t-il un parking sur le lieu de réception ?</summary>
+              <p data-i18n="faq.a3">Oui, le parking est gratuit sur place.</p>
             </details>
             <details>
-              <summary>Et s’il pleut ?</summary>
-              <p>Tout est prévu pour se replier à l’intérieur, donc la fête est maintenue quoi qu’il arrive, la
+              <summary data-i18n="faq.q4">Et s’il pleut ?</summary>
+              <p data-i18n="faq.a4">Tout est prévu pour se replier à l’intérieur, donc la fête est maintenue quoi qu’il arrive, la
                 cérémonie et le vin d'honneur seront faits dans une salle intérieure.</p>
             </details>
             <details>
-              <summary>Quelles sont les cérémonies prévues ?</summary>
-              <p>Pour le mariage civil, ce sera sur invitation uniquement. Pour la cérémonie laïque, tout le monde est
+              <summary data-i18n="faq.q5">Quelles sont les cérémonies prévues ?</summary>
+              <p data-i18n="faq.a5">Pour le mariage civil, ce sera sur invitation uniquement. Pour la cérémonie laïque, tout le monde est
                 convié pour célébrer notre union le Samedi à 15h.</p>
             </details>
             <details>
-              <summary>A quelle heure arriver pour la cérémonie laïque ?</summary>
-              <p>Merci de bien vouloir arriver vers 14h45 pour que nous puissions commencer la cérémonie à l'heure à
+              <summary data-i18n="faq.q6">A quelle heure arriver pour la cérémonie laïque ?</summary>
+              <p data-i18n="faq.a6">Merci de bien vouloir arriver vers 14h45 pour que nous puissions commencer la cérémonie à l'heure à
                 15h.</p>
             </details>
             <details>
-              <summary>Et si j'ai une allergie ou un régime alimentaire spécifique ?</summary>
-              <p>Merci de nous le signaler lors de votre réponse, le traiteur préparera un plat adapté pour vous.</p>
+              <summary data-i18n="faq.q7">Et si j'ai une allergie ou un régime alimentaire spécifique ?</summary>
+              <p data-i18n="faq.a7">Merci de nous le signaler lors de votre réponse, le traiteur préparera un plat adapté pour vous.</p>
             </details>
           </div>
         </div>
@@ -1098,7 +1201,7 @@
 
   <footer>
     <div class="wrap">
-      <p>Mariage Chloé & Rémi · 2 & 3 Octobre 2027</p>
+      <p data-i18n="footer.text">Mariage Chloé & Rémi · 2 & 3 Octobre 2027</p>
       <div class="dots" aria-hidden="true">
         <i style="background:var(--green)"></i><i style="background:var(--orange)"></i><i
           style="background:var(--blue)"></i>
@@ -1120,73 +1223,310 @@
       formShareUrl: ""    /* e.g. https://forms.gle/XXXX */
     };
 
-    var MENU = [
-      {
-        course: "Vin D'Honneur", note: "Samedi après-midi", dishes: [
-          { name: "Pologne", desc: "Chou, Pomme, Cornichons et Metka", tags: [] },
-          { name: "Espagne", desc: "Chorizo, Pomme de terre, Salmorejo", tags: [] },
-          { name: "Savoie", desc: "Crozets, Beaufort", tags: ["v"] },
-          { name: "Nord", desc: "Maroilles, Oeufs", tags: ["v"] },
-          { name: "Dunkerque", desc: "Harang, Chou", tags: [] },
-          { name: "Belgique", desc: "Cheddar, bière", tags: ["v"] },
-          { name: "Ostrevent", desc: "Champignons, Noix", tags: ["v"] },
-          { name: "Italie", desc: "Mozza, Artichaut, Tomate", tags: ["v"] },
-          { name: "Mediterannée", desc: "Parmesan, Houmous, Carottes", tags: ["v"] }
-        ]
+    /* =========================================================
+       TRANSLATIONS (FR / EN)
+       ========================================================= */
+    var TRANSLATIONS = {
+      fr: {
+        "page.title": "Mariage Rémi & Chloé",
+        "gate.title": "Mariage Chloé & Rémi",
+        "gate.desc": "Ce site est privé. Entrez le mot de passe indiqué sur votre invitation.",
+        "gate.placeholder": "Mot de passe",
+        "gate.btn": "Entrer",
+        "gate.error": "Mauvais mot de passe, veuillez réessayer.",
+        "nav.brand": "Mariage Chloé & Rémi",
+        "tabs.home": "Accueil",
+        "tabs.location": "Lieux",
+        "tabs.faq": "FAQ",
+        "tabs.menu": "Menu",
+        "tabs.carsharing": "Covoit'",
+        "tabs.hotels": "Logements",
+        "tabs.timetable": "Programme",
+        "views.home": "Accueil",
+        "views.location": "Lieu du mariage",
+        "views.menu": "Menu",
+        "views.carsharing": "Covoiturage",
+        "views.hotels": "Hôtels",
+        "views.timetable": "Programme",
+        "views.faq": "FAQ",
+        "home.hero": "Nous allons nous marier ! Venez fêter ça avec nous.",
+        "home.intro": "Nous sommes très heureux de vous recevoir ! Utilisez les onglets ci-dessus pour trouver le lieu, consulter le menu, organiser un covoiturage, réserver une chambre et consulter le programme.",
+        "home.when_title": "Quand ?",
+        "home.when_desc": "Du Samedi 2 au Dimanche 3 Octobre 2027",
+        "home.where_title": "Où ?",
+        "home.where_desc": "Domaine de Ronceval à Mouscron (Belgique), avec parking gratuit sur site !",
+        "home.rsvp_title": "Répondez avant le",
+        "home.rsvp_desc": "Vendredi 31 Aout 2027, en utilisant le QR Code sur votre invitation !",
+        "loc.title": "Lieu du mariage",
+        "loc.desc": "La fête se déroule au Domaine de Ronceval en Belgique. Le stationnement est gratuit et l'entrée est indiquée depuis la route principale.",
+        "loc.addr_title": "Adresse",
+        "loc.car_title": "En voiture",
+        "loc.car_desc": "À environ 30 minutes du centre-ville de Lille. Suivez les panneaux après le rond-point.",
+        "loc.train_title": "En train",
+        "loc.train_desc": "La gare la plus proche se trouve à 12 minutes en voiture.",
+        "loc.map_title": "Carte du lieu",
+        "loc.btn_maps": "Ouvrir dans Google Maps",
+        "loc.btn_route": "Démarrer un itinéraire",
+        "loc.mairie_title": "Mairie",
+        "loc.mairie_desc": "La cérémonie civile se déroulera à la mairie de Lille. Place Augustin Laurent, 59800 Lille.",
+        "menu.title": "Menu",
+        "menu.desc": "Un menu de saison à orientation locale, servi à table. Les tags montrent quels plats sont végétariens, végétaliens ou sans gluten.",
+        "menu.note": "<strong>Allergies ou régimes alimentaires ?</strong> Indiquez-le dans votre réponse et nous préparerons une alternative pour vous.",
+        "car.title": "Covoiturage",
+        "car.desc": "Offrez une place dans votre voiture ou demandez un transport.",
+        "car.step1_strong": "Remplissez le formulaire",
+        "car.step1_span": "Précisez si vous proposez ou si vous avez besoin de transport.",
+        "car.step2_strong": "Ajoutez votre ville de départ",
+        "car.step2_span": "Indiquez le jour et l’heure approximative de votre départ.",
+        "car.step3_strong": "Nous vous mettons en contact",
+        "car.step3_span": "Nous vous enverrons les coordonnées des personnes se trouvant sur votre trajet.",
+        "car.open_btn": "Ouvrir le formulaire dans un nouvel onglet",
+        "car.placeholder_title": "Votre formulaire Google Form apparaîtra ici",
+        "car.placeholder_desc": "Créez un formulaire dans Google Forms, choisissez Envoyer, ouvrez l’onglet « <> » et copiez le lien dans <code>src=\"…\"</code>. Collez-le dans <code>formEmbedUrl</code> en haut du script.",
+        "hotels.title": "Hôtels",
+        "hotels.desc": "Nous vous conseillons de réserver rapidement, car les chambres près du lieu de réception peuvent afficher complet.",
+        "hotels.book_btn": "Vérifier la disponibilité",
+        "time.title": "Programme",
+        "time.desc": "Les horaires peuvent légèrement varier le jour J. Nous communiquerons les changements à l’accueil.",
+        "time.aria_label": "Choisir un jour",
+        "faq.title": "FAQ",
+        "faq.desc": "Vous ne trouvez pas votre réponse ici ? Contactez nous !",
+        "faq.q1": "Y'a t'il un dress code ?",
+        "faq.a1": "Pas vraiment de dress code, mais il est recommandé de venir avec de la couleur car notre mariage sera coloré et festif ! Le lieu sera gazonné et pavé, attention aux chevilles pour ceux qui viennent en talons !",
+        "faq.q2": "Puis-je venir avec mes enfants ?",
+        "faq.a2": "Oui, les enfants sont les bienvenus. Merci de nous l'indiquer dans le formulaire pour leur préparer un menu spécial pour le diner.",
+        "faq.q3": "Y a-t-il un parking sur le lieu de réception ?",
+        "faq.a3": "Oui, le parking est gratuit sur place.",
+        "faq.q4": "Et s’il pleut ?",
+        "faq.a4": "Tout est prévu pour se replier à l’intérieur, donc la fête est maintenue quoi qu’il arrive, la cérémonie et le vin d'honneur seront faits dans une salle intérieure.",
+        "faq.q5": "Quelles sont les cérémonies prévues ?",
+        "faq.a5": "Pour le mariage civil, ce sera sur invitation uniquement. Pour la cérémonie laïque, tout le monde est convié pour célébrer notre union le Samedi à 15h.",
+        "faq.q6": "A quelle heure arriver pour la cérémonie laïque ?",
+        "faq.a6": "Merci de bien vouloir arriver vers 14h45 pour que nous puissions commencer la cérémonie à l'heure à 15h.",
+        "faq.q7": "Et si j'ai une allergie ou un régime alimentaire spécifique ?",
+        "faq.a7": "Merci de nous le signaler lors de votre réponse, le traiteur préparera un plat adapté pour vous.",
+        "footer.text": "Mariage Chloé & Rémi · 2 & 3 Octobre 2027"
       },
-      {
-        course: "Entrées", note: "Samedi soir", dishes: [
-          { name: "Huevos Perfectos", desc: "Oeuf, Poireaux et Chorizo.", tags: [] },
-          { name: "Huevos Perfectos (Végétarien)", desc: "Oeuf, Poireaux et Comté.", tags: ["v"] }
-        ]
-      },
-      {
-        course: "Plat principal", note: "Samedi soir", dishes: [
-          { name: "Réconfort du Nord au Sud", desc: "Boeuf, bière, pommes de terres", tags: [] },
-          { name: "Voyage d'Est en Ouest", desc: "Halloumi, haricots rouges, butternut, cheddar, légumes", tags: ["v"] },
-        ]
-      },
-      {
-        course: "Desserts", note: "Samedi soir", dishes: [
-          { name: "Préféré des mariés", desc: "Oeufs, Vanille", tags: ["v"] },
-          { name: "Plaisir du Portugal", desc: "Oeufs, Cannelle", tags: ["v"] },
-          { name: "Atterissage en Pologne", desc: "Oeufs, Abricot, Biscuits", tags: ["v"] }
-        ]
+      en: {
+        "page.title": "Rémi & Chloé's Wedding",
+        "gate.title": "Chloé & Rémi's Wedding",
+        "gate.desc": "This website is private. Please enter the password indicated on your invitation.",
+        "gate.placeholder": "Password",
+        "gate.btn": "Enter",
+        "gate.error": "Incorrect password, please try again.",
+        "nav.brand": "Chloé & Rémi's Wedding",
+        "tabs.home": "Home",
+        "tabs.location": "Venues",
+        "tabs.faq": "FAQ",
+        "tabs.menu": "Menu",
+        "tabs.carsharing": "Carpool",
+        "tabs.hotels": "Accommodations",
+        "tabs.timetable": "Schedule",
+        "views.home": "Home",
+        "views.location": "Wedding Venue",
+        "views.menu": "Menu",
+        "views.carsharing": "Carpooling",
+        "views.hotels": "Accommodations",
+        "views.timetable": "Schedule",
+        "views.faq": "FAQ",
+        "home.hero": "We are getting married! Come celebrate with us.",
+        "home.intro": "We are thrilled to welcome you! Use the tabs above to find the venue, check out the menu, coordinate carpooling, book accommodations, and view the schedule.",
+        "home.when_title": "When?",
+        "home.when_desc": "From Saturday, October 2 to Sunday, October 3, 2027",
+        "home.where_title": "Where?",
+        "home.where_desc": "Domaine de Ronceval in Mouscron (Belgium), with free on-site parking!",
+        "home.rsvp_title": "RSVP by",
+        "home.rsvp_desc": "Friday, August 31, 2027, using the QR code on your invitation!",
+        "loc.title": "Wedding Venue",
+        "loc.desc": "The celebration will take place at Domaine de Ronceval in Belgium. Parking is free and the entrance is signposted from the main road.",
+        "loc.addr_title": "Address",
+        "loc.car_title": "By Car",
+        "loc.car_desc": "About 30 minutes from downtown Lille. Follow the signs after the roundabout.",
+        "loc.train_title": "By Train",
+        "loc.train_desc": "The nearest train station is a 12-minute drive away.",
+        "loc.map_title": "Venue Map",
+        "loc.btn_maps": "Open in Google Maps",
+        "loc.btn_route": "Get Directions",
+        "loc.mairie_title": "City Hall",
+        "loc.mairie_desc": "The civil ceremony will take place at Lille City Hall. Place Augustin Laurent, 59800 Lille.",
+        "menu.title": "Menu",
+        "menu.desc": "A seasonal, locally-inspired seated menu. Tags indicate vegetarian, vegan, or gluten-free options.",
+        "menu.note": "<strong>Allergies or dietary restrictions?</strong> Please let us know in your RSVP and we will prepare an alternative for you.",
+        "car.title": "Carpooling",
+        "car.desc": "Offer a seat in your car or find a ride.",
+        "car.step1_strong": "Fill out the form",
+        "car.step1_span": "Specify whether you are offering or looking for a ride.",
+        "car.step2_strong": "Add your departure city",
+        "car.step2_span": "Indicate your departure day and approximate departure time.",
+        "car.step3_strong": "We connect you",
+        "car.step3_span": "We will send you the contact details of guests along your route.",
+        "car.open_btn": "Open the form in a new tab",
+        "car.placeholder_title": "Your Google Form will appear here",
+        "car.placeholder_desc": "Create a form in Google Forms, choose Send, open the “<>” tab and copy the link inside <code>src=\"…\"</code>. Paste it into <code>formEmbedUrl</code> at the top of the script.",
+        "hotels.title": "Hotels & Accommodations",
+        "hotels.desc": "We recommend booking early, as rooms near the venue can fill up quickly.",
+        "hotels.book_btn": "Check availability",
+        "time.title": "Schedule",
+        "time.desc": "Times may vary slightly on the wedding day. Any updates will be shared upon arrival.",
+        "time.aria_label": "Choose a day",
+        "faq.title": "FAQ",
+        "faq.desc": "Can't find your answer here? Feel free to contact us!",
+        "faq.q1": "Is there a dress code?",
+        "faq.a1": "No strict dress code, but we recommend wearing something colorful as our wedding will be bright and festive! The venue features lawn and cobblestones, so mind your ankles if you are wearing heels!",
+        "faq.q2": "Can I bring my children?",
+        "faq.a2": "Yes, children are very welcome! Please let us know in the RSVP form so we can prepare a special kids' menu for dinner.",
+        "faq.q3": "Is there parking at the reception venue?",
+        "faq.a3": "Yes, free on-site parking is available.",
+        "faq.q4": "What if it rains?",
+        "faq.a4": "Everything is planned for an indoor backup, so the celebration will go on no matter what! The ceremony and cocktail reception will take place in an indoor hall.",
+        "faq.q5": "What ceremonies are planned?",
+        "faq.a5": "The civil ceremony is by invitation only. For the secular ceremony, everyone is invited to celebrate our union on Saturday at 3:00 PM.",
+        "faq.q6": "What time should we arrive for the ceremony?",
+        "faq.a6": "Please plan to arrive around 2:45 PM so we can start the ceremony promptly at 3:00 PM.",
+        "faq.q7": "What if I have an allergy or dietary restriction?",
+        "faq.a7": "Please let us know in your RSVP, and the caterer will prepare a suitable alternative for you.",
+        "footer.text": "Chloé & Rémi's Wedding · October 2 & 3, 2027"
       }
-    ];
-    var TAGS = { v: "Végétarien", vg: "Végan", gf: "Sans Gluten" };
+    };
 
-    var HOTELS = [
-      { name: "Okko Hotels Lille Centre", desc: "Hotel 4* bien situé, proche de la Grand-Place, tout neuf, conseillé.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#ffe66d", link: "https://www.okkohotels.com/fr/page/lille/okko-hotels-lille-centre-hotel-4-etoiles-a-deux-pas-de-la-grande-place.24897.html" },
-      { name: "Moxy Lille Centre", desc: "Hotel 3* moderne et accueillant.", dist: "25 min à pieds de Lille Flandres", price: "A partir de 149€ la nuit", color: "#ff9f45", link: "https://www.marriott.com/fr/hotels/lilox-moxy-lille-city/overview/" },
-      { name: "Novotel Lille Centre Gares", desc: "Hotel 4* classique des standards Novotel.", dist: "15 min à pieds de Lille Flandres", price: "A partir de 140€ la nuit", color: "#4d96ff", link: "https://all.accor.com/hotel/3165/index.fr.shtml" },
-      { name: "Ibis Lille Centre Grand Palais", desc: "Hotel 3* à coté de la gare, pas cher.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#ffe66d", link: "https://all.accor.com/booking/fr/mercure/hotel/9309" },
-      { name: "Mama Shelter Lille", desc: "Hotel 3* juste à coté des gares. Brunch d'enfer pour le petit déj.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 160€ la nuit", color: "#ff9f45", link: "https://all.accor.com/booking/fr/mercure/hotel/B1C1" }
-    ];
+    var TAGS_I18N = {
+      fr: { v: "Végétarien", vg: "Végan", gf: "Sans Gluten" },
+      en: { v: "Vegetarian", vg: "Vegan", gf: "Gluten-Free" }
+    };
 
-    var TIMETABLE = {
-      "Vendredi 1 Octobre": [
-        { t: "10:00", title: "Préparation des lieux", desc: "Pour l'équipe d'organisation, aller chercher les éléments de décoration.", c: "#ffe66d" },
-        { t: "18:00", title: "Premières arrivées possibles", desc: "Pour les gens qui viennent de très loin.", c: "#ff9f45" },
-        { t: "19:30", title: "Repas informel", desc: "Repas cosy entre membres de l'organisation et invités arrivés de loin.", c: "#4d96ff" }
+    var MENU_I18N = {
+      fr: [
+        {
+          course: "Vin D'Honneur", note: "Samedi après-midi", dishes: [
+            { name: "Pologne", desc: "Chou, Pomme, Cornichons et Metka", tags: [] },
+            { name: "Espagne", desc: "Chorizo, Pomme de terre, Salmorejo", tags: [] },
+            { name: "Savoie", desc: "Crozets, Beaufort", tags: ["v"] },
+            { name: "Nord", desc: "Maroilles, Oeufs", tags: ["v"] },
+            { name: "Dunkerque", desc: "Harang, Chou", tags: [] },
+            { name: "Belgique", desc: "Cheddar, bière", tags: ["v"] },
+            { name: "Ostrevent", desc: "Champignons, Noix", tags: ["v"] },
+            { name: "Italie", desc: "Mozza, Artichaut, Tomate", tags: ["v"] },
+            { name: "Mediterannée", desc: "Parmesan, Houmous, Carottes", tags: ["v"] }
+          ]
+        },
+        {
+          course: "Entrées", note: "Samedi soir", dishes: [
+            { name: "Huevos Perfectos", desc: "Oeuf, Poireaux et Chorizo.", tags: [] },
+            { name: "Huevos Perfectos (Végétarien)", desc: "Oeuf, Poireaux et Comté.", tags: ["v"] }
+          ]
+        },
+        {
+          course: "Plat principal", note: "Samedi soir", dishes: [
+            { name: "Réconfort du Nord au Sud", desc: "Boeuf, bière, pommes de terres", tags: [] },
+            { name: "Voyage d'Est en Ouest", desc: "Halloumi, haricots rouges, butternut, cheddar, légumes", tags: ["v"] }
+          ]
+        },
+        {
+          course: "Desserts", note: "Samedi soir", dishes: [
+            { name: "Préféré des mariés", desc: "Oeufs, Vanille", tags: ["v"] },
+            { name: "Plaisir du Portugal", desc: "Oeufs, Cannelle", tags: ["v"] },
+            { name: "Atterissage en Pologne", desc: "Oeufs, Abricot, Biscuits", tags: ["v"] }
+          ]
+        }
       ],
-      "Samedi 2 Octobre": [
-        { t: "11:00", title: "Mariage civil à la mairie de Lille", desc: "Mariage civil dans la salle des mariages à Lille, pas d'échange d'alliance", c: "#ffe66d" },
-        { t: "15:00", title: "Cérémonie Laïque", desc: "Cérémonie au domaine de Ronceval avec échange d'alliances, merci d'arriver un petit peu en avance pour vous placer", c: "#ff9f45" },
-        { t: "16:00", title: "Vin D'Honneur", desc: "Sur la pelouse, s'il fait beau, à l'interieur sinon.", c: "#4d96ff" },
-        { t: "19:30", title: "Diner", desc: "En deux temps, servi à table.", c: "#ff9f45" },
-        { t: "22:00", title: "Ouverture de bal", desc: "Début de la danse !", c: "#ffe66d" },
-        { t: "23:00", title: "Dessert", desc: "Gateau et fête jusqu'au bout de la nuit !", c: "#4d96ff" }
-      ],
-      "Dimanche 3 Octobre": [
-        { t: "10:00", title: "Petit déjeuner", desc: "Café et viennoiseries.", c: "#ffe66d" },
-        { t: "12:00", title: "Rebond", desc: "Pour les plus courageux, on se retrouve autour d'un dernier verre et d'un bon repas.", c: "#4d96ff" },
-        { t: "14:00", title: "Début du rangement, fin du mariage", desc: "Merci à tous, rentrez bien.", c: "#ff9f45" }
+      en: [
+        {
+          course: "Cocktail Reception", note: "Saturday afternoon", dishes: [
+            { name: "Poland", desc: "Cabbage, Apple, Pickles, and Metka", tags: [] },
+            { name: "Spain", desc: "Chorizo, Potato, Salmorejo", tags: [] },
+            { name: "Savoie", desc: "Crozets pasta, Beaufort cheese", tags: ["v"] },
+            { name: "North", desc: "Maroilles cheese, Eggs", tags: ["v"] },
+            { name: "Dunkirk", desc: "Herring, Cabbage", tags: [] },
+            { name: "Belgium", desc: "Cheddar, beer", tags: ["v"] },
+            { name: "Ostrevent", desc: "Mushrooms, Walnuts", tags: ["v"] },
+            { name: "Italy", desc: "Mozzarella, Artichoke, Tomato", tags: ["v"] },
+            { name: "Mediterranean", desc: "Parmesan, Hummus, Carrots", tags: ["v"] }
+          ]
+        },
+        {
+          course: "Starters", note: "Saturday evening", dishes: [
+            { name: "Huevos Perfectos", desc: "Egg, Leeks, and Chorizo.", tags: [] },
+            { name: "Huevos Perfectos (Vegetarian)", desc: "Egg, Leeks, and Comté cheese.", tags: ["v"] }
+          ]
+        },
+        {
+          course: "Main Course", note: "Saturday evening", dishes: [
+            { name: "Comfort from North to South", desc: "Beef, beer, potatoes", tags: [] },
+            { name: "Journey from East to West", desc: "Halloumi, red beans, butternut squash, cheddar, vegetables", tags: ["v"] }
+          ]
+        },
+        {
+          course: "Desserts", note: "Saturday evening", dishes: [
+            { name: "The Bride & Groom's Favorite", desc: "Eggs, Vanilla", tags: ["v"] },
+            { name: "Portuguese Delight", desc: "Eggs, Cinnamon", tags: ["v"] },
+            { name: "Landing in Poland", desc: "Eggs, Apricot, Biscuits", tags: ["v"] }
+          ]
+        }
       ]
     };
 
+    var HOTELS_I18N = {
+      fr: [
+        { name: "Okko Hotels Lille Centre", desc: "Hotel 4* bien situé, proche de la Grand-Place, tout neuf, conseillé.", dist: "10 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#ffe66d", link: "https://www.okkohotels.com/fr/page/lille/okko-hotels-lille-centre-hotel-4-etoiles-a-deux-pas-de-la-grande-place.24897.html" },
+        { name: "Moxy Lille Centre", desc: "Hotel 3* moderne et accueillant.", dist: "25 min à pieds de Lille Flandres", price: "A partir de 149€ la nuit", color: "#ff9f45", link: "https://www.marriott.com/fr/hotels/lilox-moxy-lille-city/overview/" },
+        { name: "Novotel Lille Centre Gares", desc: "Hotel 4* classique des standards Novotel.", dist: "15 min à pieds de Lille Flandres", price: "A partir de 140€ la nuit", color: "#4d96ff", link: "https://all.accor.com/hotel/3165/index.fr.shtml" },
+        { name: "Ibis Lille Centre Grand Palais", desc: "Hotel 3* à coté de la gare, pas cher.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 100€ la nuit", color: "#ffe66d", link: "https://all.accor.com/booking/fr/mercure/hotel/9309" },
+        { name: "Mama Shelter Lille", desc: "Hotel 3* juste à coté des gares. Brunch d'enfer pour le petit déj.", dist: "5 min à pieds de Lille Flandres", price: "A partir de 160€ la nuit", color: "#ff9f45", link: "https://all.accor.com/booking/fr/mercure/hotel/B1C1" }
+      ],
+      en: [
+        { name: "Okko Hotels Lille Centre", desc: "Well-located 4-star hotel near the Grand-Place, brand new, recommended.", dist: "10 min walk from Lille Flandres", price: "From €100 / night", color: "#ffe66d", link: "https://www.okkohotels.com/fr/page/lille/okko-hotels-lille-centre-hotel-4-etoiles-a-deux-pas-de-la-grande-place.24897.html" },
+        { name: "Moxy Lille Centre", desc: "Modern and welcoming 3-star hotel.", dist: "25 min walk from Lille Flandres", price: "From €149 / night", color: "#ff9f45", link: "https://www.marriott.com/fr/hotels/lilox-moxy-lille-city/overview/" },
+        { name: "Novotel Lille Centre Gares", desc: "Classic 4-star hotel to Novotel standards.", dist: "15 min walk from Lille Flandres", price: "From €140 / night", color: "#4d96ff", link: "https://all.accor.com/hotel/3165/index.fr.shtml" },
+        { name: "Ibis Lille Centre Grand Palais", desc: "Affordable 3-star hotel next to the station.", dist: "5 min walk from Lille Flandres", price: "From €100 / night", color: "#ffe66d", link: "https://all.accor.com/booking/fr/mercure/hotel/9309" },
+        { name: "Mama Shelter Lille", desc: "3-star hotel right next to the train stations. Amazing brunch for breakfast.", dist: "5 min walk from Lille Flandres", price: "From €160 / night", color: "#ff9f45", link: "https://all.accor.com/booking/fr/mercure/hotel/B1C1" }
+      ]
+    };
+
+    var TIMETABLE_I18N = {
+      fr: {
+        "Vendredi 1 Octobre": [
+          { t: "10:00", title: "Préparation des lieux", desc: "Pour l'équipe d'organisation, aller chercher les éléments de décoration.", c: "#ffe66d" },
+          { t: "18:00", title: "Premières arrivées possibles", desc: "Pour les gens qui viennent de très loin.", c: "#ff9f45" },
+          { t: "19:30", title: "Repas informel", desc: "Repas cosy entre membres de l'organisation et invités arrivés de loin.", c: "#4d96ff" }
+        ],
+        "Samedi 2 Octobre": [
+          { t: "11:00", title: "Mariage civil à la mairie de Lille", desc: "Mariage civil dans la salle des mariages à Lille, pas d'échange d'alliance", c: "#ffe66d" },
+          { t: "15:00", title: "Cérémonie Laïque", desc: "Cérémonie au domaine de Ronceval avec échange d'alliances, merci d'arriver un petit peu en avance pour vous placer", c: "#ff9f45" },
+          { t: "16:00", title: "Vin D'Honneur", desc: "Sur la pelouse, s'il fait beau, à l'interieur sinon.", c: "#4d96ff" },
+          { t: "19:30", title: "Diner", desc: "En deux temps, servi à table.", c: "#ff9f45" },
+          { t: "22:00", title: "Ouverture de bal", desc: "Début de la danse !", c: "#ffe66d" },
+          { t: "23:00", title: "Dessert", desc: "Gateau et fête jusqu'au bout de la nuit !", c: "#4d96ff" }
+        ],
+        "Dimanche 3 Octobre": [
+          { t: "10:00", title: "Petit déjeuner", desc: "Café et viennoiseries.", c: "#ffe66d" },
+          { t: "12:00", title: "Rebond", desc: "Pour les plus courageux, on se retrouve autour d'un dernier verre et d'un bon repas.", c: "#4d96ff" },
+          { t: "14:00", title: "Début du rangement, fin du mariage", desc: "Merci à tous, rentrez bien.", c: "#ff9f45" }
+        ]
+      },
+      en: {
+        "Friday, October 1": [
+          { t: "10:00", title: "Venue Setup", desc: "For the setup team, picking up decorations.", c: "#ffe66d" },
+          { t: "18:00", title: "Early Arrivals", desc: "For guests traveling from far away.", c: "#ff9f45" },
+          { t: "19:30", title: "Casual Dinner", desc: "A cozy meal with the setup team and guests who arrived from afar.", c: "#4d96ff" }
+        ],
+        "Saturday, October 2": [
+          { t: "11:00", title: "Civil Ceremony at Lille City Hall", desc: "Civil wedding in the ceremony hall in Lille, no exchange of rings.", c: "#ffe66d" },
+          { t: "15:00", title: "Wedding Ceremony", desc: "Ceremony at Domaine de Ronceval with exchange of rings; please arrive slightly early to take your seats.", c: "#ff9f45" },
+          { t: "16:00", title: "Cocktail Reception", desc: "On the lawn if weather permits, indoors otherwise.", c: "#4d96ff" },
+          { t: "19:30", title: "Dinner", desc: "Two courses, seated service.", c: "#ff9f45" },
+          { t: "22:00", title: "First Dance", desc: "Time to hit the dance floor!", c: "#ffe66d" },
+          { t: "23:00", title: "Dessert & Cake", desc: "Wedding cake and dancing into the night!", c: "#4d96ff" }
+        ],
+        "Sunday, October 3": [
+          { t: "10:00", title: "Breakfast", desc: "Coffee and pastries.", c: "#ffe66d" },
+          { t: "12:00", title: "Sunday Gathering", desc: "For those still standing, meet for one last drink and a hearty meal.", c: "#4d96ff" },
+          { t: "14:00", title: "Wrap Up & Farewell", desc: "Thank you all, have a safe trip home!", c: "#ff9f45" }
+        ]
+      }
+    };
+
     /* =========================================================
-       Rendering
+       Rendering Helpers
        ========================================================= */
     function el(tag, attrs, html) {
       var n = document.createElement(tag);
@@ -1196,75 +1536,213 @@
     }
     function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
 
+    /* State */
+    var currentLang = "fr";
+    var currentDayIndex = 0;
+
     /* Location */
-    (function () {
+    function renderLocation(lang) {
       var q = encodeURIComponent(CONFIG.venueAddress);
-      document.getElementById("addr-text").innerHTML = esc(CONFIG.venueName) + "<br>" + esc(CONFIG.venueAddress);
-      document.getElementById("map-frame").src = "https://www.google.com/maps?q=" + q + "&output=embed";
-      document.getElementById("map-open").href = "https://www.google.com/maps/search/?api=1&query=" + q;
-      document.getElementById("map-route").href = "https://www.google.com/maps/dir/?api=1&destination=" + q;
-    })();
+      var addrEl = document.getElementById("addr-text");
+      if (addrEl) {
+        addrEl.innerHTML = esc(CONFIG.venueName) + "<br>" + esc(CONFIG.venueAddress);
+      }
+      var mapFrame = document.getElementById("map-frame");
+      if (mapFrame) {
+        mapFrame.src = "https://www.google.com/maps?q=" + q + "&output=embed";
+        mapFrame.setAttribute("title", TRANSLATIONS[lang]["loc.map_title"] || "Carte du lieu");
+      }
+      var mapOpen = document.getElementById("map-open");
+      if (mapOpen) {
+        mapOpen.href = "https://www.google.com/maps/search/?api=1&query=" + q;
+      }
+      var mapRoute = document.getElementById("map-route");
+      if (mapRoute) {
+        mapRoute.href = "https://www.google.com/maps/dir/?api=1&destination=" + q;
+      }
+    }
 
     /* Menu */
-    (function () {
+    function renderMenu(lang) {
       var host = document.getElementById("courses");
-      MENU.forEach(function (c) {
+      if (!host) return;
+      host.innerHTML = "";
+      var menuData = MENU_I18N[lang] || MENU_I18N.fr;
+      var tagLabels = TAGS_I18N[lang] || TAGS_I18N.fr;
+      menuData.forEach(function (c) {
         var dishes = c.dishes.map(function (d) {
-          var tags = d.tags.map(function (t) { return '<span class="tag ' + t + '">' + TAGS[t] + "</span>"; }).join("");
+          var tags = d.tags.map(function (t) { return '<span class="tag ' + t + '">' + esc(tagLabels[t] || t) + "</span>"; }).join("");
           return '<div class="dish"><h4>' + esc(d.name) + tags + "</h4><p>" + esc(d.desc) + "</p></div>";
         }).join("");
         host.appendChild(el("div", { "class": "course" }, "<h3>" + esc(c.course) + "<small>" + esc(c.note) + "</small></h3><div class='dishes'>" + dishes + "</div>"));
       });
-    })();
+    }
 
     /* Car-sharing form */
-    (function () {
+    function renderCarsharing(lang) {
       var box = document.getElementById("form-box");
       var open = document.getElementById("form-open");
+      if (!box) return;
+      box.innerHTML = "";
       if (CONFIG.formEmbedUrl) {
-        var f = el("iframe", { title: "Car-sharing form", loading: "lazy", src: CONFIG.formEmbedUrl });
-        f.textContent = "Loading…";
+        var f = el("iframe", { title: (lang === "en" ? "Car-sharing form" : "Formulaire de covoiturage"), loading: "lazy", src: CONFIG.formEmbedUrl });
+        f.textContent = lang === "en" ? "Loading…" : "Chargement…";
         box.appendChild(f);
-        open.href = CONFIG.formShareUrl || CONFIG.formEmbedUrl.replace("?embedded=true", "");
+        if (open) {
+          open.href = CONFIG.formShareUrl || CONFIG.formEmbedUrl.replace("?embedded=true", "");
+          open.style.display = "inline-block";
+        }
       } else {
         box.classList.remove("form");
-        box.appendChild(el("div", { "class": "placeholder" },
-          "<h3>Your Google Form will appear here</h3><p>Create a form in Google Forms, choose Send, open the “&lt;&gt;” tab and copy the link inside <code>src=\"…\"</code>. Paste it into <code>formEmbedUrl</code> at the top of the script.</p>"));
-        open.style.display = "none";
+        var pTitle = TRANSLATIONS[lang]["car.placeholder_title"];
+        var pDesc = TRANSLATIONS[lang]["car.placeholder_desc"];
+        box.appendChild(el("div", { "class": "placeholder" }, "<h3>" + esc(pTitle) + "</h3><p>" + pDesc + "</p>"));
+        if (open) open.style.display = "none";
       }
-    })();
+    }
 
     /* Hotels */
-    (function () {
+    function renderHotels(lang) {
       var host = document.getElementById("hotels");
-      HOTELS.forEach(function (h) {
+      if (!host) return;
+      host.innerHTML = "";
+      var hotelList = HOTELS_I18N[lang] || HOTELS_I18N.fr;
+      var btnLabel = TRANSLATIONS[lang]["hotels.book_btn"] || "Vérifier la disponibilité";
+      hotelList.forEach(function (h) {
         host.appendChild(el("article", { "class": "hotel" },
           '<div class="band" style="background:' + h.color + '"></div><div class="inner"><h3>' + esc(h.name) + "</h3><p>" + esc(h.desc) +
-          '</p><div class="meta"><span>' + esc(h.dist) + "</span><span>" + esc(h.price) + '</span></div><a class="btn" href="' + esc(h.link) + '" target="_blank" rel="noopener">Vérifier la disponibilité</a></div>'));
+          '</p><div class="meta"><span>' + esc(h.dist) + "</span><span>" + esc(h.price) + '</span></div><a class="btn" href="' + esc(h.link) + '" target="_blank" rel="noopener">' + esc(btnLabel) + '</a></div>'));
       });
-    })();
+    }
 
     /* Timetable */
-    (function () {
-      var days = Object.keys(TIMETABLE);
+    function renderTimetable(lang) {
+      var data = TIMETABLE_I18N[lang] || TIMETABLE_I18N.fr;
+      var days = Object.keys(data);
       var dayHost = document.getElementById("days");
       var list = document.getElementById("timeline");
-      function show(day) {
+      if (!dayHost || !list) return;
+      dayHost.innerHTML = "";
+
+      function show(idx) {
+        currentDayIndex = idx;
+        var dayKey = days[idx];
         list.innerHTML = "";
-        TIMETABLE[day].forEach(function (s) {
+        (data[dayKey] || []).forEach(function (s) {
           var li = el("li", { "class": "slot" }, "<time>" + esc(s.t) + "</time><div><h3>" + esc(s.title) + "</h3><p>" + esc(s.desc) + "</p></div>");
           li.style.setProperty("--c", s.c);
           list.appendChild(li);
         });
-        Array.prototype.forEach.call(dayHost.children, function (b) { b.setAttribute("aria-pressed", b.textContent === day ? "true" : "false"); });
+        Array.prototype.forEach.call(dayHost.children, function (b, i) {
+          b.setAttribute("aria-pressed", i === idx ? "true" : "false");
+        });
       }
-      days.forEach(function (d) {
+
+      days.forEach(function (d, i) {
         var b = el("button", { "class": "day-btn", type: "button" }, esc(d));
-        b.addEventListener("click", function () { show(d); });
+        b.addEventListener("click", function () { show(i); });
         dayHost.appendChild(b);
       });
-      show(days[0]);
-    })();
+
+      if (currentDayIndex >= days.length) currentDayIndex = 0;
+      show(currentDayIndex);
+    }
+
+    /* =========================================================
+       Language Switcher Handler
+       ========================================================= */
+    function setLanguage(lang) {
+      if (!TRANSLATIONS[lang]) lang = "fr";
+      currentLang = lang;
+
+      try {
+        localStorage.setItem("wedding_lang", lang);
+      } catch (e) { }
+
+      document.documentElement.lang = lang;
+
+      var t = TRANSLATIONS[lang];
+
+      // Update textContent for elements with data-i18n
+      var i18nElements = document.querySelectorAll("[data-i18n]");
+      for (var i = 0; i < i18nElements.length; i++) {
+        var elem = i18nElements[i];
+        var key = elem.getAttribute("data-i18n");
+        if (t[key] !== undefined) {
+          elem.textContent = t[key];
+        }
+      }
+
+      // Update innerHTML for elements with data-i18n-html
+      var htmlElements = document.querySelectorAll("[data-i18n-html]");
+      for (var j = 0; j < htmlElements.length; j++) {
+        var hElem = htmlElements[j];
+        var hKey = hElem.getAttribute("data-i18n-html");
+        if (t[hKey] !== undefined) {
+          hElem.innerHTML = t[hKey];
+        }
+      }
+
+      // Update placeholders
+      var placeholderElements = document.querySelectorAll("[data-i18n-placeholder]");
+      for (var p = 0; p < placeholderElements.length; p++) {
+        var pElem = placeholderElements[p];
+        var pKey = pElem.getAttribute("data-i18n-placeholder");
+        if (t[pKey] !== undefined) {
+          pElem.setAttribute("placeholder", t[pKey]);
+        }
+      }
+
+      // Update aria-labels
+      var ariaElements = document.querySelectorAll("[data-i18n-aria-label]");
+      for (var a = 0; a < ariaElements.length; a++) {
+        var aElem = ariaElements[a];
+        var aKey = aElem.getAttribute("data-i18n-aria-label");
+        if (t[aKey] !== undefined) {
+          aElem.setAttribute("aria-label", t[aKey]);
+        }
+      }
+
+      // Update title
+      if (t["page.title"]) {
+        document.title = t["page.title"];
+      }
+
+      // Update gate error if active
+      var gateError = document.getElementById("gate-error");
+      if (gateError && gateError.textContent) {
+        gateError.textContent = t["gate.error"];
+      }
+
+      // Update buttons state
+      var langBtns = document.querySelectorAll(".lang-btn");
+      for (var b = 0; b < langBtns.length; b++) {
+        var btn = langBtns[b];
+        var btnLang = btn.getAttribute("data-lang");
+        var isActive = btnLang === lang;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      }
+
+      // Re-render dynamic components
+      renderLocation(lang);
+      renderMenu(lang);
+      renderCarsharing(lang);
+      renderHotels(lang);
+      renderTimetable(lang);
+    }
+
+    // Attach click listeners to language buttons
+    var allLangBtns = document.querySelectorAll(".lang-btn");
+    for (var k = 0; k < allLangBtns.length; k++) {
+      allLangBtns[k].addEventListener("click", function (e) {
+        e.preventDefault();
+        var targetLang = this.getAttribute("data-lang");
+        if (targetLang && targetLang !== currentLang) {
+          setLanguage(targetLang);
+        }
+      });
+    }
 
     /* Tab navigation (hash-based so each tab can be linked) */
     (function () {
@@ -1272,7 +1750,8 @@
       function go(name, push) {
         if (views.indexOf(name) === -1) name = "home";
         views.forEach(function (v) {
-          document.getElementById("view-" + v).classList.toggle("active", v === name);
+          var elView = document.getElementById("view-" + v);
+          if (elView) elView.classList.toggle("active", v === name);
         });
         Array.prototype.forEach.call(document.querySelectorAll("#tabs a"), function (a) {
           if (a.getAttribute("href") === "#" + name) a.setAttribute("aria-current", "page");
@@ -1292,6 +1771,7 @@
       window.addEventListener("hashchange", function () { go(location.hash.slice(1), false); });
       go(location.hash.slice(1), false);
     })();
+
     /* Password gate */
     (function () {
       var PASSWORD_HASH = "46246dafee2652ad13ba3ccaf1f32d41aefaf5354f63c820ca40c5b36920189e";
@@ -1317,9 +1797,26 @@
         var error = document.getElementById("gate-error");
         sha256(input.value.trim()).then(function (h) {
           if (h === PASSWORD_HASH) { unlock(true); }
-          else { error.textContent = "Mauvais mot de passe, veuillez réessayer."; input.select(); }
+          else {
+            error.textContent = TRANSLATIONS[currentLang]["gate.error"] || "Mauvais mot de passe, veuillez réessayer.";
+            input.select();
+          }
         });
       });
+    })();
+
+    /* Initial Language Setup */
+    (function () {
+      var initialLang = "fr";
+      try {
+        var saved = localStorage.getItem("wedding_lang");
+        if (saved && (saved === "fr" || saved === "en")) {
+          initialLang = saved;
+        } else if (navigator.language && navigator.language.toLowerCase().startsWith("en")) {
+          initialLang = "en";
+        }
+      } catch (e) { }
+      setLanguage(initialLang);
     })();
   </script>
 </body>
